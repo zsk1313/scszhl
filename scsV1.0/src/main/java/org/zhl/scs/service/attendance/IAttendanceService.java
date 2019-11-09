@@ -34,37 +34,21 @@ public interface IAttendanceService {
     void deleteAttendance(Attenance attendance);
 
     /**
-     * 根据id查询考勤表
-     *
-     * @param id 考勤表id
-     * @return
-     */
-    Attenance selectAttendanceById(int id);
-
-    /**
-     * 根据班级id或课程id查询考勤表（可以为空），判定为空则不加条件
-     *
-     * @param clazzId  班级id
-     * @param courseId 课程id
-     * @return
-     */
-    List<Attenance> selectAttendanceByClazzOrCourse(int clazzId, int courseId);
-
-    /**
-     * 根据时间查询考勤表
-     *
-     * @param date 时间
-     * @return
-     */
-    List<Attenance> selectAttendanceByDate(Date date);
-
-    /**
-     * 备用与复杂查询，参数传入枚举类属性来判断条件追加（未实现）
+     * 查询考勤表
      *
      * @param item
      * @return
      */
-    List<Attenance> selectAttendanceByAny(Object item);
+    Attenance selectAttendance(Object item);
+
+    /**
+     * 根据班级id或课程id查询考勤表（可以为空），判定为空则不加条件
+     *
+     * @param item
+     * @return
+     */
+    List<Attenance> selectAttendances(Object item);
+
 
     //---------门禁管理----------
 

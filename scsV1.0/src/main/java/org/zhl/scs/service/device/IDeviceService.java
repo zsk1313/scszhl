@@ -11,6 +11,24 @@ import java.util.List;
  */
 public interface IDeviceService {
 
+    /**
+     * 添加设备
+     * @param device
+     */
+    void saveDevice(Object device);
+
+    /**
+     * 更新设备
+     * @param device
+     */
+    void updateDevice(Object device);
+
+    /**
+     * 删除设备
+     * @param device
+     */
+    void deleteDevice(Object device);
+
     //--------环境监控--------
 
     /**

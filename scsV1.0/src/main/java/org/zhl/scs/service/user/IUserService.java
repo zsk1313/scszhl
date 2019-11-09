@@ -44,26 +44,18 @@ public interface IUserService {
     User login(String username, String password);
 
     /**
-     * 根据用户名查询用户
+     * 查询用户集合
      *
      * @return 用户对象集合
      */
-    List<User> selectUserByUsername(String username);
+    List<User> selectUsers(Object item);
 
     /**
-     * 根据用户角色查询用户
-     *
-     * @return 用户集合对象
-     */
-    List<User> selectUserByRole(int roleId);
-
-    /**
-     * 备用
-     *
+     * 查询用户
      * @param item
      * @return
      */
-    List<User> selectUserByAny(Object item);
+    User selectUser(Object item);
 
     //--------------student表操作--------------
 
@@ -97,36 +89,21 @@ public interface IUserService {
     Student selectStudentById(int id);
 
     /**
-     * 根据学生学号查询学生
-     *
-     * @param uid 学生学号
-     * @return
-     */
-    Student selectStudentByUid(String uid);
-
-    /**
-     * 根据学生姓名查找学生
-     *
-     * @param name 学生姓名
-     * @return
-     */
-    List<Student> selectStudentByName(String name);
-
-    /**
-     * 根据班级查询学生
-     *
-     * @param clazzId 班级id
-     * @return
-     */
-    List<Student> selectStudentByClazz(int clazzId);
-
-    /**
-     * 备用
+     * 查询学生
      *
      * @param item
      * @return
      */
-    List<Student> selectStudentByAny(Object item);
+    Student selectStudent(Object item);
+
+    /**
+     * 根据学生姓名查找学生
+     *
+     * @param item
+     * @return
+     */
+    List<Student> selectStudents(Object item);
+
 
     //-----------teacher操作-------------
 
@@ -160,27 +137,20 @@ public interface IUserService {
     Teacher selectTeacherById(int id);
 
     /**
-     * 根据教师名字查询教师
-     *
-     * @param name 教师名字
-     * @return
-     */
-    List<Teacher> selectTeacherByName(String name);
-
-    /**
-     * 根据教师编号查询教师
-     *
-     * @param uid 教师编号
-     * @return
-     */
-    Teacher selectTeacherByUid(String uid);
-
-    /**
-     * 备用
+     * 查询教师集合
      *
      * @param item
      * @return
      */
-    List<Teacher> selectTeacherByAny(Object item);
+    List<Teacher> selectTeachers(Object item);
+
+    /**
+     * 查询教师
+     *
+     * @param item
+     * @return
+     */
+    Teacher selectTeacher(Object item);
+
 
 }

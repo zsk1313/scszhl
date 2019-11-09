@@ -43,28 +43,21 @@ public interface ITeachingService {
     Clazz selectClazzById(int id);
 
     /**
-     * 根据班级编号查询班级
+     * 查询班级
      *
-     * @param num 班级编号
+     * @param item
      * @return
      */
-    Clazz selectClazzByNum(String num);
+    Clazz selectClazz(Object item);
 
     /**
-     * 根据教师id查询班级集合
-     *
-     * @param teacherId 教师id
-     * @return 班级集合
-     */
-    List<Clazz> selectClazzByTeacher(int teacherId);
-
-    /**
-     * 备用
+     * 查询班级集合
      *
      * @param item
      * @return 班级集合
      */
-    List<Clazz> selectClazzByAny(Object item);
+    List<Clazz> selectClazzs(Object item);
+
 
     //-----------课程管理---------------
 
@@ -90,27 +83,21 @@ public interface ITeachingService {
     void deleteCourse(Course course);
 
     /**
-     * 根据课程id查询课程
+     * 查询课程
      *
-     * @param id 课程id
+     * @param item
      * @return 课程
      */
-    Course selectCourseById(int id);
+    Course selectCourse(Object item);
 
     /**
-     * 根据星期查询课程
-     *
-     * @param week 星期
-     * @return 课程集合
-     */
-    List<Course> selectCourseByWeek(int week);
-
-    /**
-     * 备用
+     * 查询课程集合
      *
      * @param item
      * @return 课程集合
      */
-    List<Course> selectCourseByAny(Object item);
+    List<Course> selectCourses(Object item);
+
+
 
 }
