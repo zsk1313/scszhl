@@ -18,8 +18,8 @@ public class CourseVo implements Serializable {
 	private Integer week;//星期
 	private Integer dateorder;//课程节数（1、2、3、4、5）
 	private Integer teacher;//该课程任课老师
-	private List<Integer> attenances;//该课程考勤集合
-	private List<Integer> students;//该课程学生集合
+	private List<Integer> attenanceIds;//该课程考勤集合
+	private List<Integer> studentIds;//该课程学生集合
 	public CourseVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -63,21 +63,21 @@ public class CourseVo implements Serializable {
 	public Integer getTeacher() {
 		return teacher;
 	}
-	public void setAttenances(List<Integer> attenances) {
-		this.attenances=attenances;
+	public List<Integer> getAttenanceIds() {
+		return attenanceIds;
 	}
-	public List<Integer> getAttenances() {
-		return attenances;
+	public void setAttenanceIds(List<Integer> attenanceIds) {
+		this.attenanceIds = attenanceIds;
 	}
-	public void setStudents(List<Integer> students) {
-		this.students=students;
+	public List<Integer> getStudentIds() {
+		return studentIds;
 	}
-	public List<Integer> getStudents() {
-		return students;
+	public void setStudentIds(List<Integer> studentIds) {
+		this.studentIds = studentIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Course [id="+id+", name="+name+", score="+score+", code="+code+", week="+week+", dateorder="+dateorder+", teacher="+teacher+", attenances="+attenances+", students="+students+"]";
+			"Course [id="+id+", name="+name+", score="+score+", code="+code+", week="+week+", dateorder="+dateorder+", teacher="+teacher+", attenanceIds="+attenanceIds+", studentIds="+studentIds+"]";
 	}
 }

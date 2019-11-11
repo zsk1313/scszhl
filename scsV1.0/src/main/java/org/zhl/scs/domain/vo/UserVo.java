@@ -13,9 +13,9 @@ public class UserVo implements Serializable {
 	private Integer id;//id主键
 	private String username;//用户名称
 	private String password;//密码
-	private Integer role;//角色类
-	private Integer teacher;//该用户名的教师
-	private Integer userscurity;//用户安全认证信息类
+	private Integer roleId;//角色类
+	private Integer teacherId;//该用户名的教师
+	private Integer userscurityId;//用户安全认证信息类
 	public UserVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -35,27 +35,27 @@ public class UserVo implements Serializable {
 	public String getPassword() {
 		return password;
 	}
-	public void setRole(Integer role) {
-		this.role=role;
+	public Integer getRoleId() {
+		return roleId;
 	}
-	public Integer getRole() {
-		return role;
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
 	}
-	public void setTeacher(Integer teacher) {
-		this.teacher=teacher;
+	public Integer getTeacherId() {
+		return teacherId;
 	}
-	public Integer getTeacher() {
-		return teacher;
+	public void setTeacherId(Integer teacherId) {
+		this.teacherId = teacherId;
 	}
-	public Integer getUserscurity() {
-		return userscurity;
+	public Integer getUserscurityId() {
+		return userscurityId;
 	}
-	public void setUserscurity(Integer userscurity) {
-		this.userscurity = userscurity;
+	public void setUserscurityId(Integer userscurityId) {
+		this.userscurityId = userscurityId;
 	}
 	@Override
 	public String toString() {
 		return
-			"User [id="+id+", username="+username+", password="+password+", role="+role+", teacher="+teacher+", userscurity="+userscurity+"]";
+			"User [id="+id+", username="+username+", password="+password+", roleId="+roleId+", teacherId="+teacherId+", userscurityId="+userscurityId+"]";
 	}
 }

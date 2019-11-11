@@ -19,7 +19,7 @@ public class SensorNodeVo implements Serializable {
 	private String fundescription;//功能描述
 	private String address;//地址
 	private String flag;//标志位
-	private Integer client;//客户控制终端id
+	private Integer clientId;//客户控制终端id
 	public SensorNodeVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -69,15 +69,15 @@ public class SensorNodeVo implements Serializable {
 	public String getFlag() {
 		return flag;
 	}
-	public void setClient(Integer client) {
-		this.client=client;
+	public Integer getClientId() {
+		return clientId;
 	}
-	public Integer getClient() {
-		return client;
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
 	}
 	@Override
 	public String toString() {
 		return
-			"SensorNode [id="+id+", code="+code+", time="+time+", type="+type+", status="+status+", fundescription="+fundescription+", address="+address+", flag="+flag+", client="+client+"]";
+			"SensorNode [id="+id+", code="+code+", time="+time+", type="+type+", status="+status+", fundescription="+fundescription+", address="+address+", flag="+flag+", clientId="+clientId+"]";
 	}
 }

@@ -17,9 +17,9 @@ public class AttenanceVo implements Serializable {
 	private Integer total;//应到人数
 	private Integer actual;//实到人数
 	private String note;//备注
-	private Integer clazz;//班级
-	private Integer course;//课程
-	private List<Integer> attendanceDetails;//考勤信息条集合
+	private Integer clazzId;//班级
+	private Integer courseId;//课程
+	private List<Integer> attendanceDetailIds;//考勤信息条集合
 	public AttenanceVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -51,27 +51,27 @@ public class AttenanceVo implements Serializable {
 	public String getNote() {
 		return note;
 	}
-	public void setClazz(Integer clazz) {
-		this.clazz=clazz;
+	public Integer getClazzId() {
+		return clazzId;
 	}
-	public Integer getClazz() {
-		return clazz;
+	public void setClazzId(Integer clazzId) {
+		this.clazzId = clazzId;
 	}
-	public void setCourse(Integer course) {
-		this.course=course;
+	public Integer getCourseId() {
+		return courseId;
 	}
-	public Integer getCourse() {
-		return course;
+	public void setCourseId(Integer courseId) {
+		this.courseId = courseId;
 	}
-	public void setAttendanceDetails(List<Integer> attendanceDetails) {
-		this.attendanceDetails=attendanceDetails;
+	public void setAttendanceDetailIds(List<Integer> attendanceDetailIds) {
+		this.attendanceDetailIds=attendanceDetailIds;
 	}
-	public List<Integer> getAttendanceDetails() {
-		return attendanceDetails;
+	public List<Integer> getAttendanceDetailIds() {
+		return attendanceDetailIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Attenance [id="+id+", date="+date+", total="+total+", actual="+actual+", note="+note+", clazz="+clazz+", course="+course+", attendanceDetails="+attendanceDetails+"]";
+			"Attenance [id="+id+", date="+date+", total="+total+", actual="+actual+", note="+note+", clazzId="+clazzId+", course="+courseId+", attendanceDetailIds="+attendanceDetailIds+"]";
 	}
 }

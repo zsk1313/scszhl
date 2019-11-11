@@ -13,7 +13,7 @@ public class JobVo implements Serializable {
 
 	private Integer id;//
 	private String name;//
-	private List<Integer> teachers;//
+	private List<Integer> teacherIds;//
 	public JobVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -27,15 +27,15 @@ public class JobVo implements Serializable {
 	public String getName() {
 		return name;
 	}
-	public void setTeachers(List<Integer> teachers) {
-		this.teachers=teachers;
+	public List<Integer> getTeacherIds() {
+		return teacherIds;
 	}
-	public List<Integer> getTeachers() {
-		return teachers;
+	public void setTeacherIds(List<Integer> teacherIds) {
+		this.teacherIds = teacherIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Job [id="+id+", name="+name+", teachers="+teachers+"]";
+			"Job [id="+id+", name="+name+", teacherIds="+teacherIds+"]";
 	}
 }

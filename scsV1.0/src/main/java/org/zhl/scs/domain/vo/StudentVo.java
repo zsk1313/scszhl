@@ -22,11 +22,11 @@ public class StudentVo implements Serializable {
 	private String address;//地址
 	private String postcode;//邮编
 	private String profession;//专业
-	private Integer user;//用户ID
-	private Integer image;//照片ID
-	private Integer clazz;//班级ID
-	private List<Integer> courses;//该学生课程集合
-	private List<Integer> attendanceDetails;//该学生考勤信息集合
+	private Integer userId;//用户ID
+	private Integer imageId;//照片ID
+	private Integer clazzId;//班级ID
+	private List<Integer> courseIds;//该学生课程集合
+	private List<Integer> attendanceDetailIds;//该学生考勤信息集合
 	public StudentVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -88,39 +88,9 @@ public class StudentVo implements Serializable {
 	public String getProfession() {
 		return profession;
 	}
-	public void setUser(Integer user) {
-		this.user=user;
-	}
-	public Integer getUser() {
-		return user;
-	}
-	public void setImage(Integer image) {
-		this.image=image;
-	}
-	public Integer getImage() {
-		return image;
-	}
-	public void setClazz(Integer clazz) {
-		this.clazz=clazz;
-	}
-	public Integer getClazz() {
-		return clazz;
-	}
-	public void setCourses(List<Integer> courses) {
-		this.courses=courses;
-	}
-	public List<Integer> getCourses() {
-		return courses;
-	}
-	public void setAttendanceDetails(List<Integer> attendanceDetails) {
-		this.attendanceDetails=attendanceDetails;
-	}
-	public List<Integer> getAttendanceDetails() {
-		return attendanceDetails;
-	}
 	@Override
 	public String toString() {
 		return
-			"Student [id="+id+", name="+name+", uid="+uid+", sex="+sex+", birthday="+birthday+", admissiontime="+admissiontime+", nativeplace="+nativeplace+", address="+address+", postcode="+postcode+", profession="+profession+", user="+user+", image="+image+", clazz="+clazz+", courses="+courses+", attendanceDetails="+attendanceDetails+"]";
+			"Student [id="+id+", name="+name+", uid="+uid+", sex="+sex+", birthday="+birthday+", admissiontime="+admissiontime+", nativeplace="+nativeplace+", address="+address+", postcode="+postcode+", profession="+profession+", userId="+userId+", imageId="+imageId+", clazzId="+clazzId+", courseIds="+courseIds+", attendanceDetailIds="+attendanceDetailIds+"]";
 	}
 }

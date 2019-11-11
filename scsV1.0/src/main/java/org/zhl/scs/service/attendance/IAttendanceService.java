@@ -3,7 +3,6 @@ package org.zhl.scs.service.attendance;
 import org.zhl.scs.domain.Attenance;
 import org.zhl.scs.domain.vo.AttenanceVo;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,23 +15,23 @@ public interface IAttendanceService {
     /**
      * 保存考勤表
      *
-     * @param attenance 考勤表
+     * @param attenanceVo 考勤表
      */
-    void saveAttendance(AttenanceVo attenance);
+    void saveAttendance(AttenanceVo attenanceVo);
 
     /**
      * 修改考勤表
      *
-     * @param attenance 考勤表
+     * @param attenanceVo 考勤表
      */
-    void updateAttendance(AttenanceVo attenance);
+    void updateAttendance(AttenanceVo attenanceVo);
 
     /**
      * 删除考勤表
      *
-     * @param attenance
+     * @param attenanceVo
      */
-    void deleteAttendance(AttenanceVo attenance);
+    void deleteAttendance(AttenanceVo attenanceVo);
 
     /**
      * 查询考勤表

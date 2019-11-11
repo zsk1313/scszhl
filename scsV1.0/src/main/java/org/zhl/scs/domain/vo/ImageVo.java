@@ -12,9 +12,9 @@ public class ImageVo implements Serializable {
 
 	private Integer id;//id主键
 	private String path;//图片路径
-	private Integer teacher;//该照片所属老师
-	private Integer clazz;//该照片所属班级
-	private Integer student;//该照片所属学生
+	private Integer teacherId;//该照片所属老师
+	private Integer clazzId;//该照片所属班级
+	private Integer studentId;//该照片所属学生
 	public ImageVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -28,27 +28,27 @@ public class ImageVo implements Serializable {
 	public String getPath() {
 		return path;
 	}
-	public void setTeacher(Integer teacher) {
-		this.teacher=teacher;
+	public Integer getTeacherId() {
+		return teacherId;
 	}
-	public Integer getTeacher() {
-		return teacher;
+	public void setTeacherId(Integer teacherId) {
+		this.teacherId = teacherId;
 	}
-	public void setClazz(Integer clazz) {
-		this.clazz=clazz;
+	public Integer getClazzId() {
+		return clazzId;
 	}
-	public Integer getClazz() {
-		return clazz;
+	public void setClazzId(Integer clazzId) {
+		this.clazzId = clazzId;
 	}
-	public Integer getStudent() {
-		return student;
+	public Integer getStudentId() {
+		return studentId;
 	}
-	public void setStudent(Integer student) {
-		this.student = student;
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 	@Override
 	public String toString() {
 		return
-			"Image [id="+id+", path="+path+", teacher="+teacher+", clazz="+clazz+", student="+student+"]";
+			"Image [id="+id+", path="+path+", teacherId="+teacherId+", clazzId="+clazzId+", studentId="+studentId+"]";
 	}
 }

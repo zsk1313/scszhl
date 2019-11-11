@@ -14,7 +14,7 @@ public class RoleVo implements Serializable {
 	private Integer id;//id主键
 	private String name;//角色名称（超级管理员，管理员，学生，教师，访客）
 	private String description;//角色描述
-	private List<Integer> users;//该角色的用户集合
+	private List<Integer> userIds;//该角色的用户集合
 	public RoleVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -34,15 +34,15 @@ public class RoleVo implements Serializable {
 	public String getDescription() {
 		return description;
 	}
-	public void setUsers(List<Integer> users) {
-		this.users=users;
+	public List<Integer> getUserIds() {
+		return userIds;
 	}
-	public List<Integer> getUsers() {
-		return users;
+	public void setUserIds(List<Integer> userIds) {
+		this.userIds = userIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Role [id="+id+", name="+name+", description="+description+", users="+users+"]";
+			"Role [id="+id+", name="+name+", description="+description+", userIds="+userIds+"]";
 	}
 }

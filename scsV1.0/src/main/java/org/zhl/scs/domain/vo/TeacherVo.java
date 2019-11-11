@@ -20,10 +20,10 @@ public class TeacherVo implements Serializable {
 	private Date entertime;//入职时间
 	private String address;//地址
 	private String description;//简历
-	private Integer user;//用户id
-	private Integer image;//照片id
-	private Integer job;//职称id
-	private List<Integer> clazzs;//班主任为该老师的班级集合
+	private Integer userId;//用户id
+	private Integer imageId;//照片id
+	private Integer jobId;//职称id
+	private List<Integer> clazzIds;//班主任为该老师的班级集合
 	TeacherVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -73,33 +73,33 @@ public class TeacherVo implements Serializable {
 	public String getDescription() {
 		return description;
 	}
-	public void setUser(Integer user) {
-		this.user=user;
+	public Integer getUserId() {
+		return userId;
 	}
-	public Integer getUser() {
-		return user;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
-	public void setImage(Integer image) {
-		this.image=image;
+	public Integer getImageId() {
+		return imageId;
 	}
-	public Integer getImage() {
-		return image;
+	public void setImageId(Integer imageId) {
+		this.imageId = imageId;
 	}
-	public void setJob(Integer job) {
-		this.job=job;
+	public Integer getJobId() {
+		return jobId;
 	}
-	public Integer getJob() {
-		return job;
+	public void setJobId(Integer jobId) {
+		this.jobId = jobId;
 	}
-	public void setClazzs(List<Integer> clazzs) {
-		this.clazzs=clazzs;
+	public List<Integer> getClazzIds() {
+		return clazzIds;
 	}
-	public List<Integer> getClazzs() {
-		return clazzs;
+	public void setClazzIds(List<Integer> clazzIds) {
+		this.clazzIds = clazzIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Teacher [id="+id+", name="+name+", uid="+uid+", sex="+sex+", birthday="+birthday+", entertime="+entertime+", address="+address+", description="+description+", user="+user+", image="+image+", job="+job+", clazzs="+clazzs+"]";
+			"Teacher [id="+id+", name="+name+", uid="+uid+", sex="+sex+", birthday="+birthday+", entertime="+entertime+", address="+address+", description="+description+", userId="+userId+", imageId="+imageId+", jobId="+jobId+", clazzIds="+clazzIds+"]";
 	}
 }

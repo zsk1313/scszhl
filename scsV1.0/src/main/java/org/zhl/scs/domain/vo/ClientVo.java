@@ -13,8 +13,8 @@ public class ClientVo implements Serializable {
 
 	private Integer id;//ID主键
 	private String name;//客户控制终端名称
-	private List<Integer> sensorNodes;//传感器节点集合
-	private List<Integer> controllerNodes;//控制器节点集合
+	private List<Integer> sensorNodeIds;//传感器节点集合
+	private List<Integer> controllerNodeIds;//控制器节点集合
 	public ClientVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -28,21 +28,21 @@ public class ClientVo implements Serializable {
 	public String getName() {
 		return name;
 	}
-	public void setSensorNodes(List<Integer> sensorNodes) {
-		this.sensorNodes=sensorNodes;
+	public List<Integer> getSensorNodeIds() {
+		return sensorNodeIds;
 	}
-	public List<Integer> getSensorNodes() {
-		return sensorNodes;
+	public void setSensorNodeIds(List<Integer> sensorNodeIds) {
+		this.sensorNodeIds = sensorNodeIds;
 	}
-	public void setControllerNodes(List<Integer> controllerNodes) {
-		this.controllerNodes=controllerNodes;
+	public List<Integer> getControllerNodeIds() {
+		return controllerNodeIds;
 	}
-	public List<Integer> getControllerNodes() {
-		return controllerNodes;
+	public void setControllerNodeIds(List<Integer> controllerNodeIds) {
+		this.controllerNodeIds = controllerNodeIds;
 	}
 	@Override
 	public String toString() {
 		return
-			"Client [id="+id+", name="+name+", sensorNodes="+sensorNodes+", controllerNodes="+controllerNodes+"]";
+			"Client [id="+id+", name="+name+", sensorNodeIds="+sensorNodeIds+", controllerNodeIds="+controllerNodeIds+"]";
 	}
 }

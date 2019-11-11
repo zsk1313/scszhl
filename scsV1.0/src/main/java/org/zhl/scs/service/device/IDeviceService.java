@@ -1,6 +1,5 @@
 package org.zhl.scs.service.device;
 
-import org.zhl.scs.domain.Client;
 import org.zhl.scs.domain.ControllerNode;
 import org.zhl.scs.domain.SensorNode;
 import org.zhl.scs.domain.vo.ClientVo;

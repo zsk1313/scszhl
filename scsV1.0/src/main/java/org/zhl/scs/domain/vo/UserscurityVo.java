@@ -14,7 +14,7 @@ public class UserscurityVo implements Serializable {
 	private String fingerpoint;//指纹信息
 	private String faceid;//人脸信息
 	private String cardid;//通行卡信息
-	private Integer user;//用户id
+	private Integer userId;//用户id
 	public UserscurityVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -40,15 +40,15 @@ public class UserscurityVo implements Serializable {
 	public String getCardid() {
 		return cardid;
 	}
-	public void setUser(Integer user) {
-		this.user=user;
+	public Integer getUserId() {
+		return userId;
 	}
-	public Integer getUser() {
-		return user;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
 	}
 	@Override
 	public String toString() {
 		return
-			"Studentscurity [id="+id+", fingerpoint="+fingerpoint+", faceid="+faceid+", cardid="+cardid+", user="+user+"]";
+			"Studentscurity [id="+id+", fingerpoint="+fingerpoint+", faceid="+faceid+", cardid="+cardid+", userId="+userId+"]";
 	}
 }
