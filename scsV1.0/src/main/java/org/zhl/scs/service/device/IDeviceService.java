@@ -3,6 +3,9 @@ package org.zhl.scs.service.device;
 import org.zhl.scs.domain.Client;
 import org.zhl.scs.domain.ControllerNode;
 import org.zhl.scs.domain.SensorNode;
+import org.zhl.scs.domain.vo.ClientVo;
+import org.zhl.scs.domain.vo.ControllerNodeVo;
+import org.zhl.scs.domain.vo.SensorNodeVo;
 
 import java.util.List;
 
@@ -34,64 +37,64 @@ public interface IDeviceService {
     /**
      * 获取个传感器节点数据
      *
-     * @param client 客户端id
+     * @param clientVo 客户端id
      * @return
      */
-    List<SensorNode> readSensors(Client client);
+    List<SensorNode> readSensors(ClientVo clientVo);
 
     /**
      * 传感器数据法制判断
      *
-     * @param SensorNode 传感器
+     * @param SensorNodeVo 传感器
      * @return
      */
-    Object determineSensorValue(SensorNode SensorNode);
+    Object determineSensorValue(SensorNodeVo SensorNodeVo);
 
     /**
      * 报警（未完成）
      *
-     * @param SensorNode 传感器
+     * @param SensorNodeVo 传感器
      * @return
      */
-    Object sensorPolice(SensorNode SensorNode);
+    Object sensorPolice(SensorNodeVo SensorNodeVo);
 
     /**
      * 排险（未完成）
      *
-     * @param SensorNode 传感器
+     * @param SensorNodeVo 传感器
      * @return
      */
-    Object sensorZone(SensorNode SensorNode);
+    Object sensorZone(SensorNodeVo SensorNodeVo);
 
     //--------控制系统---------
 
     /**
      * 读取控制器数值
      *
-     * @param client
+     * @param clientVo
      * @return
      */
-    List<ControllerNode> readControllerNode(Client client);
+    List<ControllerNode> readControllerNode(ClientVo clientVo);
 
     /**
      * 控制室内设备
      *
-     * @param ControllerNode
+     * @param ControllerNodeVo
      */
-    void controllerDevice(ControllerNode ControllerNode);
+    void controllerDevice(ControllerNodeVo ControllerNodeVo);
 
     /**
      * 环境自动响应
      *
-     * @param ControllerNode
+     * @param ControllerNodeVo
      */
-    void autoController(ControllerNode ControllerNode);
+    void autoController(ControllerNodeVo ControllerNodeVo);
 
     /**
      * 安全应急预案
      *
-     * @param ControllerNode
+     * @param ControllerNodeVo
      */
-    void contingencyPlan(ControllerNode ControllerNode);
+    void contingencyPlan(ControllerNodeVo ControllerNodeVo);
 
 }

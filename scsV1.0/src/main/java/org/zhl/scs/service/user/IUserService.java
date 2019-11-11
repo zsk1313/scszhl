@@ -4,6 +4,9 @@ package org.zhl.scs.service.user;
 import org.zhl.scs.domain.Student;
 import org.zhl.scs.domain.Teacher;
 import org.zhl.scs.domain.User;
+import org.zhl.scs.domain.vo.StudentVo;
+import org.zhl.scs.domain.vo.TeacherVo;
+import org.zhl.scs.domain.vo.UserVo;
 
 import java.util.List;
 
@@ -17,17 +20,17 @@ public interface IUserService {
     /**
      * 保存用户
      */
-    void saveUser(User user);
+    void saveUser(UserVo UserVo);
 
     /**
      * 更新用户信息
      */
-    void updateUser(User user);
+    void updateUser(UserVo UserVo);
 
     /**
      * 删除用户
      */
-    void deleteUser(User user);
+    void deleteUser(UserVo UserVo);
 
     /**
      * 根据id查找用户
@@ -62,23 +65,23 @@ public interface IUserService {
     /**
      * 保存学生信息
      *
-     * @param student
+     * @param StudentVo
      */
-    void saveStudent(Student student);
+    void saveStudent(StudentVo StudentVo);
 
     /**
      * 更新学生信息
      *
-     * @param student
+     * @param StudentVo
      */
-    void updateStudent(Student student);
+    void updateStudent(StudentVo StudentVo);
 
     /**
      * 删除学生
      *
-     * @param student
+     * @param StudentVo
      */
-    void deleteStudent(Student student);
+    void deleteStudent(StudentVo StudentVo);
 
     /**
      * 根据id查询学生
@@ -110,23 +113,23 @@ public interface IUserService {
     /**
      * 保存教师对象
      *
-     * @param teacher
+     * @param TeacherVo
      */
-    void saveTeacher(Teacher teacher);
+    void saveTeacher(TeacherVo TeacherVo);
 
     /**
      * 更新教师对象
      *
-     * @param teacher
+     * @param TeacherVo
      */
-    void updateTeacher(Teacher teacher);
+    void updateTeacher(TeacherVo TeacherVo);
 
     /**
      * 删除教师对象
      *
-     * @param teacher
+     * @param TeacherVo
      */
-    void deleteTeacher(Teacher teacher);
+    void deleteTeacher(TeacherVo TeacherVo);
 
     /**
      * 根据教师id查询教师

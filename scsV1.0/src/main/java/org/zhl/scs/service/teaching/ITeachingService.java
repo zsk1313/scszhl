@@ -3,6 +3,8 @@ package org.zhl.scs.service.teaching;
 
 import org.zhl.scs.domain.Clazz;
 import org.zhl.scs.domain.Course;
+import org.zhl.scs.domain.vo.ClazzVo;
+import org.zhl.scs.domain.vo.CourseVo;
 
 import java.util.List;
 
@@ -16,23 +18,23 @@ public interface ITeachingService {
     /**
      * 保存班级对象
      *
-     * @param clazz 班级对象
+     * @param ClazzVo 班级对象
      */
-    void saveClazz(Clazz clazz);
+    void saveClazz(ClazzVo ClazzVo);
 
     /**
      * 更新班级对象
      *
-     * @param clazz 班级对象
+     * @param ClazzVo 班级对象
      */
-    void updateClazz(Clazz clazz);
+    void updateClazz(ClazzVo ClazzVo);
 
     /**
      * 删除班级对象
      *
-     * @param clazz 班级对象
+     * @param ClazzVo 班级对象
      */
-    void deleteClazz(Clazz clazz);
+    void deleteClazz(ClazzVo ClazzVo);
 
     /**
      * 根据班级id查询班级
@@ -64,23 +66,23 @@ public interface ITeachingService {
     /**
      * 保存课程信息
      *
-     * @param course
+     * @param CourseVo
      */
-    void saveCourse(Course course);
+    void saveCourse(CourseVo CourseVo);
 
     /**
      * 更新课程信息
      *
-     * @param course
+     * @param CourseVo
      */
-    void updateCourse(Course course);
+    void updateCourse(CourseVo CourseVo);
 
     /**
      * 删除课程信息
      *
-     * @param course
+     * @param CourseVo
      */
-    void deleteCourse(Course course);
+    void deleteCourse(CourseVo CourseVo);
 
     /**
      * 查询课程
