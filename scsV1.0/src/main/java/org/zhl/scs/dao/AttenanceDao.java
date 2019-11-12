@@ -49,10 +49,10 @@ public interface AttenanceDao{
 	List<Attenance> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_attenance where clazz_id = #{id}")
-	Attenance selectByClazzId(Integer id);
+	List<Attenance> selectByClazzId(Integer id);
 
 	@Select("select * from tb_attenance where course_id = #{id}")
-	Attenance selectByCourseId(Integer id);
+	List<Attenance> selectByCourseId(Integer id);
 
 	@Select("select * from tb_attenance where id = #{attendance_id}")
 	Attenance selectByIdWithAttenanceId(@Param("attendance_id") Integer id);

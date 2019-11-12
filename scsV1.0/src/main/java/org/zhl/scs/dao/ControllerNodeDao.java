@@ -51,6 +51,6 @@ public interface ControllerNodeDao{
 	List<ControllerNode> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_controller_node where client_id = #{id}")
-	ControllerNode selectByClientId(Integer id);
+	List<ControllerNode> selectByClientId(Integer id);
 
 }

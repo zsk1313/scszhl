@@ -45,7 +45,7 @@ public interface ClazzDao{
 	List<Clazz> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_clazz where teacher_id = #{id}")
-	Clazz selectByTeacherId(Integer id);
+	List<Clazz> selectByTeacherId(Integer id);
 
 	@Select("select * from tb_clazz where image_id = #{id}")
 	Clazz selectByImageId(Integer id);

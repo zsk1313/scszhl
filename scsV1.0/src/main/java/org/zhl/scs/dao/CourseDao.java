@@ -51,13 +51,13 @@ public interface CourseDao{
 	List<Course> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_course where teacher_id = #{id}")
-	Course selectByTeacherId(Integer id);
+	List<Course> selectByTeacherId(Integer id);
 
 	@Select("select * from tb_course where id = #{course_id}")
 	Course selectByIdWithCourseId(@Param("course_id") Integer id);
 
 	@Select("select * from tb_course where id in (select course_id from student_course where student_id = #{id} )")
-	Course selectByStudentId(Integer id);
+	List<Course> selectByStudentId(Integer id);
 
 	@InsertProvider(type=CourseDynaSqlProvider.class,method="insertStudents")
 	void insertStudents(Course entity);

@@ -27,7 +27,8 @@ public interface ImageDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="path",property="path"),
 		@Result(column="id",property="teacher",one=@One(select="org.zhl.scs.dao.TeacherDao.selectByImageId",fetchType=FetchType.EAGER)),
-		@Result(column="id",property="clazz",one=@One(select="org.zhl.scs.dao.ClazzDao.selectByImageId",fetchType=FetchType.EAGER))
+		@Result(column="id",property="clazz",one=@One(select="org.zhl.scs.dao.ClazzDao.selectByImageId",fetchType=FetchType.EAGER)),
+		@Result(column="id",property="student",one=@One(select="org.zhl.scs.dao.StudentDao.selectByImageId",fetchType=FetchType.EAGER))
 	})
 	Image selectById(Integer id);
 
@@ -36,7 +37,8 @@ public interface ImageDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="path",property="path"),
 		@Result(column="id",property="teacher",one=@One(select="org.zhl.scs.dao.TeacherDao.selectByImageId",fetchType=FetchType.EAGER)),
-		@Result(column="id",property="clazz",one=@One(select="org.zhl.scs.dao.ClazzDao.selectByImageId",fetchType=FetchType.EAGER))
+		@Result(column="id",property="clazz",one=@One(select="org.zhl.scs.dao.ClazzDao.selectByImageId",fetchType=FetchType.EAGER)),
+		@Result(column="id",property="student",one=@One(select="org.zhl.scs.dao.StudentDao.selectByImageId",fetchType=FetchType.EAGER))
 	})
 	List<Image> selectByPage(Map<String, Object> params);
 

@@ -69,10 +69,10 @@ public interface StudentDao{
 	Student selectByImageId(Integer id);
 
 	@Select("select * from tb_student where clazz_id = #{id}")
-	Student selectByClazzId(Integer id);
+	List<Student> selectByClazzId(Integer id);
 
 	@Select("select * from tb_student where id in (select student_id from student_course where course_id = #{id} )")
-	Student selectByCourseId(Integer id);
+	List<Student> selectByCourseId(Integer id);
 
 	@InsertProvider(type=StudentDynaSqlProvider.class,method="insertCourses")
 	void insertCourses(Student entity);

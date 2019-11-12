@@ -51,6 +51,6 @@ public interface SensorNodeDao{
 	List<SensorNode> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_sensor_node where client_id = #{id}")
-	SensorNode selectByClientId(Integer id);
+	List<SensorNode> selectByClientId(Integer id);
 
 }

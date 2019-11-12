@@ -2,7 +2,6 @@ package org.zhl.scs.dao;
 
 import java.util.*;
 import org.apache.ibatis.annotations.*;
-import org.apache.ibatis.mapping.FetchType;
 import org.zhl.scs.dao.provider.UserDynaSqlProvider;
 import org.zhl.scs.domain.User;
 
@@ -47,7 +46,13 @@ public interface UserDao{
 	List<User> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_user where role_id = #{id}")
-	User selectByRoleId(Integer id);
+	List<User> selectByRoleId(Integer id);
+
+	@Select("select * from tb_user where id = #{user_id}")
+	User selectByIdWithUserId(@Param("user_id") Integer id);
+
+	@Select("select * from tb_user where id = #{user_id}")
+	User selectByIdWithUserId(@Param("user_id") Integer id);
 
 	@Select("select * from tb_user where id = #{user_id}")
 	User selectByIdWithUserId(@Param("user_id") Integer id);

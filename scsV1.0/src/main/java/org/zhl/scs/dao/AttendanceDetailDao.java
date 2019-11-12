@@ -41,9 +41,9 @@ public interface AttendanceDetailDao{
 	List<AttendanceDetail> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_attendance_detail where student_id = #{id}")
-	AttendanceDetail selectByStudentId(Integer id);
+	List<AttendanceDetail> selectByStudentId(Integer id);
 
 	@Select("select * from tb_attendance_detail where attendance_id = #{id}")
-	AttendanceDetail selectByAttenanceId(Integer id);
+	List<AttendanceDetail> selectByAttenanceId(Integer id);
 
 }

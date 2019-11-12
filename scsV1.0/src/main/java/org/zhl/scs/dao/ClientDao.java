@@ -26,8 +26,8 @@ public interface ClientDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
-		@Result(column="client_id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
-		@Result(column="client_id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
+		@Result(column="id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
+		@Result(column="id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
 	})
 	Client selectById(Integer id);
 
@@ -35,12 +35,12 @@ public interface ClientDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
-		@Result(column="client_id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
-		@Result(column="client_id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
+		@Result(column="id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
+		@Result(column="id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
 	})
 	List<Client> selectByPage(Map<String, Object> params);
 
-	@Select("select * from tb_client where client_id = #{id}")
-	Client selectByIdWithClientId(@Param("id") Integer id);
+	@Select("select * from tb_client where id = #{client_id}")
+	Client selectByIdWithClientId(@Param("client_id") Integer id);
 
 }

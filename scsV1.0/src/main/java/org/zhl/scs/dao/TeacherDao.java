@@ -63,7 +63,7 @@ public interface TeacherDao{
 	Teacher selectByImageId(Integer id);
 
 	@Select("select * from tb_teacher where job_id = #{id}")
-	Teacher selectByJobId(Integer id);
+	List<Teacher> selectByJobId(Integer id);
 
 	@Select("select * from tb_teacher where id = #{teacher_id}")
 	Teacher selectByIdWithTeacherId(@Param("teacher_id") Integer id);
