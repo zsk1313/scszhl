@@ -11,7 +11,7 @@ public class PageModel {
 	/** 当前页面 */
 	private int pageIndex ;
 	/** 每页分多少条数据   */
-	private int pageSize = HrmConstants.PAGE_DEFAULT_SIZE = 4;
+	private int pageSize = ScsConstants.PAGE_DEFAULT_SIZE = 4;
 	
 	/** 总页数  */
 	private int totalSize;
@@ -34,7 +34,7 @@ public class PageModel {
 		this.pageIndex = pageIndex;
 	}
 	public int getPageSize() {
-		this.pageSize = this.pageSize <= HrmConstants.PAGE_DEFAULT_SIZE?HrmConstants.PAGE_DEFAULT_SIZE:this.pageSize;
+		this.pageSize = this.pageSize <= ScsConstants.PAGE_DEFAULT_SIZE?ScsConstants.PAGE_DEFAULT_SIZE:this.pageSize;
 		return pageSize;
 	}
 	public void setPageSize(int pageSize) {

@@ -5,10 +5,8 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
- * 赋值属性，T类的属性参数值（不为 null 与 ""）赋值到V类相同属性参数名中
+ * 赋值属性，assignBean类的属性参数值（不为 null 与 ""）赋值到assignedBean类相同属性参数名中
  * @author zsk
- * @param <T> 赋值类
- * @param <V> 被赋值类
  */
 public class AssignByFieldName {
 	private Object assignBean;
