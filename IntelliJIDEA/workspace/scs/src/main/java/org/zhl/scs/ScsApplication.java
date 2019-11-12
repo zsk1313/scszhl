@@ -7,10 +7,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 @MapperScan(basePackages = "org.zhl.scs.dao", annotationClass = Mapper.class)
-public class Application {
+public class ScsApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(Application.class, args);
+		SpringApplication.run(ScsApplication.class,args);
 	}
 
 }
