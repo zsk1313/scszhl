@@ -42,6 +42,20 @@ public interface IDeviceService {
     List<SensorNode> readSensors(ClientVo clientVo);
 
     /**
+     * 分页查询传感器数据
+     * @param clientVo
+     * @return
+     */
+    List<SensorNode> readSensorsByPage(ClientVo clientVo);
+
+    /**
+     * 读取传感器
+     * @param sensorNodeVo
+     * @return
+     */
+    SensorNode readSensor(SensorNodeVo sensorNodeVo);
+
+    /**
      * 传感器数据法制判断
      *
      * @param SensorNodeVo 传感器
@@ -73,7 +87,21 @@ public interface IDeviceService {
      * @param clientVo
      * @return
      */
-    List<ControllerNode> readControllerNode(ClientVo clientVo);
+    List<ControllerNode> readControllerNodes(ClientVo clientVo);
+
+    /**
+     * 分页查询控制器
+     * @param clientVo
+     * @return
+     */
+    List<ControllerNode> readControllerNodesByPage(ClientVo clientVo);
+
+    /**
+     * 查询控制器
+     * @param controllerNodeVo
+     * @return
+     */
+    ControllerNode readControllerNode(ControllerNodeVo controllerNodeVo);
 
     /**
      * 控制室内设备
