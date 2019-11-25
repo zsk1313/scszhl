@@ -66,4 +66,5 @@ public interface UserDao{
 
 	@Select("select * from tb_user where username=#{username}")
 	User loadUserByUsername(String username);
+
 }
