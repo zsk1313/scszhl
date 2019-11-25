@@ -2,6 +2,7 @@ package org.zhl.scs.dao;
 
 import java.util.*;
 import org.apache.ibatis.annotations.*;
+import org.apache.ibatis.mapping.FetchType;
 import org.zhl.scs.dao.provider.UserDynaSqlProvider;
 import org.zhl.scs.domain.User;
 
@@ -26,7 +27,7 @@ public interface UserDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="username",property="username"),
 		@Result(column="password",property="password"),
-		@Result(column="role_id",property="role",one=@One(select="org.zhl.scs.dao.RoleDao.selectByIdWithRoleId",fetchType=FetchType.EAGER)),
+		@Result(column="role_id",property="role",one=@One(select="org.zhl.scs.dao.RoleDao.selectByIdWithRoleId",fetchType= FetchType.EAGER)),
 		@Result(column="id",property="teacher",one=@One(select="org.zhl.scs.dao.TeacherDao.selectByUserId",fetchType=FetchType.EAGER)),
 		@Result(column="id",property="student",one=@One(select="org.zhl.scs.dao.StudentDao.selectByUserId",fetchType=FetchType.EAGER)),
 		@Result(column="id",property="userscurity",one=@One(select="org.zhl.scs.dao.UserscurityDao.selectByUserId",fetchType=FetchType.EAGER))
@@ -47,12 +48,6 @@ public interface UserDao{
 
 	@Select("select * from tb_user where role_id = #{id}")
 	List<User> selectByRoleId(Integer id);
-
-	@Select("select * from tb_user where id = #{user_id}")
-	User selectByIdWithUserId(@Param("user_id") Integer id);
-
-	@Select("select * from tb_user where id = #{user_id}")
-	User selectByIdWithUserId(@Param("user_id") Integer id);
 
 	@Select("select * from tb_user where id = #{user_id}")
 	User selectByIdWithUserId(@Param("user_id") Integer id);

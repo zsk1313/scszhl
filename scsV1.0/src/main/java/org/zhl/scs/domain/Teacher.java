@@ -25,7 +25,7 @@ public class Teacher implements Serializable {
 	private Image image;//照片id
 	private Job job;//职称id
 	private List<Clazz> clazzs;//班主任为该老师的班级集合
-	Teacher() {}
+	public Teacher() {}
 	public void setId(Integer id) {
 		this.id=id;
 	}
