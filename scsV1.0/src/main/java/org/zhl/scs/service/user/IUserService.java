@@ -12,6 +12,8 @@ import java.util.List;
 
 /**
  * 用户管理模块
+ * @author lzs
+ * @version v1.1
  */
 public interface IUserService {
 

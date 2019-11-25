@@ -3,9 +3,11 @@ package org.zhl.scs.dao;
 import java.util.*;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 import org.zhl.scs.dao.provider.ClientDynaSqlProvider;
 import org.zhl.scs.domain.Client;
 
+@Repository
 @Mapper
 public interface ClientDao{
 
@@ -26,8 +28,8 @@ public interface ClientDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
-		@Result(column="client_id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
-		@Result(column="client_id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
+		@Result(column="id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
+		@Result(column="id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
 	})
 	Client selectById(Integer id);
 
@@ -35,12 +37,15 @@ public interface ClientDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
-		@Result(column="client_id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
-		@Result(column="client_id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
+		@Result(column="id",property="sensorNodes",many=@Many(select="org.zhl.scs.dao.SensorNodeDao.selectByClientId",fetchType=FetchType.LAZY)),
+		@Result(column="id",property="controllerNodes",many=@Many(select="org.zhl.scs.dao.ControllerNodeDao.selectByClientId",fetchType=FetchType.LAZY))
 	})
 	List<Client> selectByPage(Map<String, Object> params);
 
-	@Select("select * from tb_client where client_id = #{id}")
+	@Select("select * from tb_client where id = #{id}")
 	Client selectByIdWithClientId(@Param("id") Integer id);
+
+	@Select("select * from tb_client")
+	List<Client> selectAll();
 
 }

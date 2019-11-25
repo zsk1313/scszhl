@@ -11,13 +11,13 @@ public class PageModel {
 	/** 当前页面 */
 	private int pageIndex ;
 	/** 每页分多少条数据   */
-	private int pageSize = HrmConstants.PAGE_DEFAULT_SIZE = 4;
+	private int pageSize = ScsConstants.PAGE_DEFAULT_SIZE;
 	
 	/** 总页数  */
 	private int totalSize;
 
 	public int getRecordCount() {
-		this.recordCount = this.recordCount <= 0 ? 0:this.recordCount;
+		this.recordCount = Math.max(this.recordCount, 0);
 		return recordCount;
 	}
 	public void setRecordCount(int recordCount) {
@@ -26,7 +26,7 @@ public class PageModel {
 	public int getPageIndex() {
 		this.pageIndex = this.pageIndex <= 0?1:this.pageIndex;
 		/** 判断当前页面是否超过了总页数:如果超过了默认给最后一页作为当前页  */
-		this.pageIndex = this.pageIndex>=this.getTotalSize()?this.getTotalSize():this.pageIndex;
+		this.pageIndex = Math.min(this.pageIndex, this.getTotalSize());
 		
 		return pageIndex;
 	}
@@ -34,7 +34,7 @@ public class PageModel {
 		this.pageIndex = pageIndex;
 	}
 	public int getPageSize() {
-		this.pageSize = this.pageSize <= HrmConstants.PAGE_DEFAULT_SIZE?HrmConstants.PAGE_DEFAULT_SIZE:this.pageSize;
+		this.pageSize = Math.max(this.pageSize, ScsConstants.PAGE_DEFAULT_SIZE);
 		return pageSize;
 	}
 	public void setPageSize(int pageSize) {
@@ -52,6 +52,9 @@ public class PageModel {
 	
 	
 	public int getFirstLimitParam(){
+		if (getPageIndex() <= 0) {
+			return 0;
+		}
 		return (this.getPageIndex()-1)*this.getPageSize() ;
 	}
 	

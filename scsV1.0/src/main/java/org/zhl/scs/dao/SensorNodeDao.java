@@ -3,9 +3,11 @@ package org.zhl.scs.dao;
 import java.util.*;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 import org.zhl.scs.dao.provider.SensorNodeDynaSqlProvider;
 import org.zhl.scs.domain.SensorNode;
 
+@Repository
 @Mapper
 public interface SensorNodeDao{
 
@@ -37,7 +39,7 @@ public interface SensorNodeDao{
 	SensorNode selectById(Integer id);
 
 	@SelectProvider(type=SensorNodeDynaSqlProvider.class,method="selectWithParam")
-	@Results({
+	@Results(id = "full_sensor", value = {
 		@Result(id=true,column="id",property="id"),
 		@Result(column="code",property="code"),
 		@Result(column="time",property="time",javaType=java.util.Date.class),
@@ -51,6 +53,10 @@ public interface SensorNodeDao{
 	List<SensorNode> selectByPage(Map<String, Object> params);
 
 	@Select("select * from tb_sensor_node where client_id = #{id}")
-	SensorNode selectByClientId(Integer id);
+	List<SensorNode> selectByClientId(Integer id);
+
+	@Select("select * from tb_sensor_node")
+	@ResultMap(value = "full_sensor")
+	List<SensorNode> selectAll();
 
 }

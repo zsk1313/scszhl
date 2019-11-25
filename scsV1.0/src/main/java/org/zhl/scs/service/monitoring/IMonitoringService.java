@@ -2,6 +2,8 @@ package org.zhl.scs.service.monitoring;
 
 /**
  * 安防监控
+ * @author lzs
+ * @version v1.0
  */
 public interface IMonitoringService {
 

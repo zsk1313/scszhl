@@ -20,7 +20,21 @@ public class SensorNodeVo implements Serializable {
 	private String address;//地址
 	private String flag;//标志位
 	private Integer clientId;//客户控制终端id
+	private String value;  //传感器数值
+	private String[] thresholdValue = new String[2];  //传感器阈值
 	public SensorNodeVo() {}
+	public String[] getThresholdValue() {
+		return thresholdValue;
+	}
+	public void setThresholdValue(String[] thresholdValue) {
+		this.thresholdValue = thresholdValue;
+	}
+	public String getValue() {
+		return value;
+	}
+	public void setValue(String value) {
+		this.value = value;
+	}
 	public void setId(Integer id) {
 		this.id=id;
 	}
@@ -77,7 +91,18 @@ public class SensorNodeVo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return
-			"SensorNode [id="+id+", code="+code+", time="+time+", type="+type+", status="+status+", fundescription="+fundescription+", address="+address+", flag="+flag+", clientId="+clientId+"]";
+		return "SensorNodeVo{" +
+				"id=" + id +
+				", code='" + code + '\'' +
+				", time=" + time +
+				", type='" + type + '\'' +
+				", status='" + status + '\'' +
+				", fundescription='" + fundescription + '\'' +
+				", address='" + address + '\'' +
+				", flag='" + flag + '\'' +
+				", clientId=" + clientId +
+				", value='" + value + '\'' +
+				", thresholdValue='" + thresholdValue + '\'' +
+				'}';
 	}
 }

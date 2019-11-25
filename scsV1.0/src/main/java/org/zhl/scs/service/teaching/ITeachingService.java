@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * 教学管理模块
+ * @author lzs
+ * @version v1.1
  */
 public interface ITeachingService {
 
