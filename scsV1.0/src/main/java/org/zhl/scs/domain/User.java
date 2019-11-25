@@ -1,82 +1,141 @@
 package org.zhl.scs.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 /**
  * 用户Domain类
- *
  * @author zsk
  */
+@JsonIgnoreProperties(value = {"handler"})
 public class User implements Serializable, UserDetails {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;//id主键
-	private String username;//用户名称
-	private String password;//密码
-	private Role role;//角色类
+	private Integer id;//用户id
+	private String username;//用户名
+	private String password;//用户密码
+	private Boolean enable;//账户可用
+	private Boolean locked;//账户锁定
+	private List<Role> roles;;//角色类
 	private Teacher teacher;//该用户名的教师
+	private Student student;//该用户名的学生
 	private Userscurity userscurity;//用户安全认证信息类
 
-	public User() {
-	}
+	public User() {}
 
-	public void setId(Integer id) {
-		this.id = id;
+	/**
+	 * 获取当前用户拥有的角色信息
+	 * @return 用户拥有的角色信息
+	 */
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+		for (Role role : roles) {
+			authorities.add(new SimpleGrantedAuthority(role.getName()));
+		}
+		return authorities;
+	}
+	/**
+	 * 获取用户密码
+	 * @return password
+	 */
+	@JsonIgnore
+	@Override
+	public String getPassword() {
+		return password;
+	}
+	/**
+	 * 获取用户名
+	 * @return username
+	 */
+	@Override
+	public String getUsername() {
+		return username;
+	}
+	/**
+	 * 当前用户是否未过期
+	 * @return accountNonExpired
+	 */
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+	/**
+	 * 当前用户是否未锁定
+	 * @return accountNonLocked
+	 */
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return !locked;
+	}
+	/**
+	 * 当前用户密码是否未过期
+	 * @return credentialsNonExpired
+	 */
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	/**
+	 * 当前用户是否可用
+	 * @return enabled
+	 */
+	@Override
+	public boolean isEnabled() {
+		return enable!=null?enable:true;
 	}
 
 	public Integer getId() {
 		return id;
 	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public void setUsername(String username) {
 		this.username = username;
 	}
 
-	public String getUsername() {
-		return username;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
-	@Override
-	public boolean isAccountNonExpired() {
-		return false;
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
 	}
 
-	@Override
-	public boolean isAccountNonLocked() {
-		return false;
+	public Boolean getEnable() {
+		return enable;
 	}
 
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return false;
+	public Boolean getLocked() {
+		return locked;
 	}
 
-	@Override
-	public boolean isEnabled() {
-		return false;
+	public void setLocked(Boolean locked) {
+		this.locked = locked;
 	}
 
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		return null;
+	public List<Role> getRoles() {
+		return roles;
 	}
 
-	@Override
-	public String getPassword() {
-		return password;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public Role getRole() {
-		return role;
+	public void setRoles(List<Role> roles) {
+		this.roles = roles;
 	}
 
 	public void setTeacher(Teacher teacher) {
@@ -85,6 +144,14 @@ public class User implements Serializable, UserDetails {
 
 	public Teacher getTeacher() {
 		return teacher;
+	}
+
+	public Student getStudent() {
+		return student;
+	}
+
+	public void setStudent(Student student) {
+		this.student = student;
 	}
 
 	public Userscurity getUserscurity() {
@@ -98,6 +165,6 @@ public class User implements Serializable, UserDetails {
 	@Override
 	public String toString() {
 		return
-				"User [id=" + id + ", username=" + username + ", password=" + password + ", role=" + role + ", teacher=" + teacher + ", userscurity=" + userscurity + "]";
+				"User [id=" + id + ", username=" + username + ", password=" + password +", locked="+locked+", enable="+enable+ ", roles=" + roles + ", teacher=" + teacher + ", student="+student+", userscurity=" + userscurity + "]";
 	}
 }

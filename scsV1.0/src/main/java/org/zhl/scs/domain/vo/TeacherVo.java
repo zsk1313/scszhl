@@ -1,5 +1,7 @@
 package org.zhl.scs.domain.vo;
 
+import org.zhl.scs.util.common.Sex;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -15,7 +17,7 @@ public class TeacherVo implements Serializable {
 	private Integer id;//id主键
 	private String name;//教师姓名
 	private String uid;//教师编号
-	private String sex;//性别
+	private Sex sex;//性别
 	private Date birthday;//出生日期
 	private Date entertime;//入职时间
 	private String address;//地址
@@ -24,7 +26,7 @@ public class TeacherVo implements Serializable {
 	private Integer imageId;//照片id
 	private Integer jobId;//职称id
 	private List<Integer> clazzIds;//班主任为该老师的班级集合
-	TeacherVo() {}
+	public TeacherVo() {}
 	public void setId(Integer id) {
 		this.id=id;
 	}
@@ -43,10 +45,10 @@ public class TeacherVo implements Serializable {
 	public String getUid() {
 		return uid;
 	}
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex=sex;
 	}
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 	public void setBirthday(Date birthday) {

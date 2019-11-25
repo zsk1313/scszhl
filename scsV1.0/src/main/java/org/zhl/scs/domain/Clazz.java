@@ -8,7 +8,7 @@ import java.util.List;
  * @author zsk
  *
  */
-public class Clazz implements Serializable {
+public class Clazz implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;//id主键

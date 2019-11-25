@@ -2,6 +2,7 @@ package org.zhl.scs.service.attendance;
 
 import org.zhl.scs.domain.Attenance;
 import org.zhl.scs.domain.vo.AttenanceVo;
+import org.zhl.scs.util.PageModel;
 
 import java.util.List;
 
@@ -44,10 +45,11 @@ public interface IAttendanceService {
     /**
      * 根据班级id或课程id查询考勤表（可以为空），判定为空则不加条件
      *
-     * @param item
+     * @param attenanceVo
+     * @param pageModel
      * @return
      */
-    List<Attenance> selectAttendances(Object item);
+    List<Attenance> selectAttendances(AttenanceVo attenanceVo, PageModel pageModel);
 
 
     //---------门禁管理----------

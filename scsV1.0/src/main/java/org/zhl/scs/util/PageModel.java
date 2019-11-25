@@ -11,7 +11,7 @@ public class PageModel {
 	/** 当前页面 */
 	private int pageIndex ;
 	/** 每页分多少条数据   */
-	private int pageSize = ScsConstants.PAGE_DEFAULT_SIZE = 4;
+	private int pageSize = ScsConstants.PAGE_DEFAULT_SIZE;
 	
 	/** 总页数  */
 	private int totalSize;
@@ -52,6 +52,9 @@ public class PageModel {
 	
 	
 	public int getFirstLimitParam(){
+		if (getPageIndex()<=0){
+			return 0;
+		}
 		return (this.getPageIndex()-1)*this.getPageSize() ;
 	}
 	

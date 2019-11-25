@@ -5,7 +5,14 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.zhl.scs.dao.provider.TeacherDynaSqlProvider;
 import org.zhl.scs.domain.Teacher;
+import org.zhl.scs.util.common.Sex;
 
+/**
+ * 教师Dao接口
+ * @author zsk
+ * @version 1.0
+ * Create on 2019/11/14
+ */
 @Mapper
 public interface TeacherDao{
 
@@ -27,7 +34,7 @@ public interface TeacherDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
 		@Result(column="uid",property="uid"),
-		@Result(column="sex",property="sex"),
+		@Result(column="sex",property="sex",javaType = Sex.class),
 		@Result(column="birthday",property="birthday",javaType=java.util.Date.class),
 		@Result(column="entertime",property="entertime",javaType=java.util.Date.class),
 		@Result(column="address",property="address"),
@@ -44,7 +51,7 @@ public interface TeacherDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
 		@Result(column="uid",property="uid"),
-		@Result(column="sex",property="sex"),
+		@Result(column="sex",property="sex",javaType = Sex.class),
 		@Result(column="birthday",property="birthday",javaType=java.util.Date.class),
 		@Result(column="entertime",property="entertime",javaType=java.util.Date.class),
 		@Result(column="address",property="address"),

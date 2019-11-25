@@ -1,5 +1,8 @@
 package org.zhl.scs.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -9,6 +12,7 @@ import java.lang.reflect.Method;
  * @author zsk
  */
 public class AssignByFieldName {
+	private final static Logger logger= LoggerFactory.getLogger(AssignByFieldName.class);
 	private Object assignBean;
 	private Object assignedBean;
 	private static AssignByFieldName instance;
@@ -39,6 +43,7 @@ public class AssignByFieldName {
 			throws IllegalArgumentException, IllegalAccessException,
 			InvocationTargetException {
 		if(getAssignBean()==null || getAssignedBean()==null) {
+			logger.debug("赋值类或被赋值类为null");
 			throw new NullPointerException("赋值类或被赋值类为null");
 		}
 		Class<?> clazz1=getAssignBean().getClass();
@@ -57,7 +62,7 @@ public class AssignByFieldName {
 		    for(int j=0;j<method2s.length;j++) {
 		    	if(method2s[j].getName().equals(methodName)) {
 					curMethod=method2s[j];
-					 System.out.println("当前方法："+curMethod.getName());
+					 logger.debug("当前方法："+curMethod.getName());
 					 curVal = field.get(assignBean);
 					 if(curVal!=null && !"".equals(curVal)) {
 						curMethod.invoke(assignedBean, curVal);
@@ -86,7 +91,7 @@ public class AssignByFieldName {
 		    for(int j=0;j<method2s.length;j++) {
 		    	if(method2s[j].getName().equals(methodName)) {
 					curMethod=method2s[j];
-					 System.out.println("当前方法："+curMethod.getName());
+					 logger.debug("当前方法："+curMethod.getName());
 					 curVal = field.get(assignBean);
 					 if(curVal!=null && !"".equals(curVal)) {
 						curMethod.invoke(assignedBean, curVal);
@@ -98,7 +103,7 @@ public class AssignByFieldName {
 		for(int k=0;k<field2s.length;k++) {
 			Field field1=field2s[k];
 			field1.setAccessible(true);
-			System.out.println("设值成功："+field1.get(assignedBean));
+			logger.debug("设值成功："+field1.get(assignedBean));
 		}
 	}
 }

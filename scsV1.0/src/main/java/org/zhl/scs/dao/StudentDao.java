@@ -5,7 +5,14 @@ import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
 import org.zhl.scs.dao.provider.StudentDynaSqlProvider;
 import org.zhl.scs.domain.Student;
+import org.zhl.scs.util.common.Sex;
 
+/**
+ * 学生Dao接口
+ * @author zsk
+ * @version 1.0
+ * Create on 2019/11/14
+ */
 @Mapper
 public interface StudentDao{
 
@@ -27,7 +34,7 @@ public interface StudentDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
 		@Result(column="uid",property="uid"),
-		@Result(column="sex",property="sex"),
+		@Result(column="sex",property="sex",javaType = Sex.class),
 		@Result(column="birthday",property="birthday",javaType=java.util.Date.class),
 		@Result(column="admissiontime",property="admissiontime",javaType=java.util.Date.class),
 		@Result(column="nativeplace",property="nativeplace"),
@@ -47,7 +54,7 @@ public interface StudentDao{
 		@Result(id=true,column="id",property="id"),
 		@Result(column="name",property="name"),
 		@Result(column="uid",property="uid"),
-		@Result(column="sex",property="sex"),
+		@Result(column="sex",property="sex",javaType = Sex.class),
 		@Result(column="birthday",property="birthday",javaType=java.util.Date.class),
 		@Result(column="admissiontime",property="admissiontime",javaType=java.util.Date.class),
 		@Result(column="nativeplace",property="nativeplace"),
@@ -74,6 +81,10 @@ public interface StudentDao{
 	@Select("select * from tb_student where id in (select student_id from student_course where course_id = #{id} )")
 	List<Student> selectByCourseId(Integer id);
 
+	/**
+	 * 批量插入该学生拥有课程
+	 * @param entity 学生实例
+	 */
 	@InsertProvider(type=StudentDynaSqlProvider.class,method="insertCourses")
 	void insertCourses(Student entity);
 

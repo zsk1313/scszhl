@@ -1,5 +1,7 @@
 package org.zhl.scs.domain;
 
+import org.zhl.scs.util.common.Sex;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -17,7 +19,7 @@ public class Student implements Serializable {
 	private Integer id;//ID主键
 	private String name;//学生姓名
 	private String uid;//学号
-	private String sex;//性别
+	private Sex sex;//性别
 	private Date birthday;//出生
 	private Date admissiontime;//入学时间
 	private String nativeplace;//籍贯
@@ -48,10 +50,10 @@ public class Student implements Serializable {
 	public String getUid() {
 		return uid;
 	}
-	public void setSex(String sex) {
+	public void setSex(Sex sex) {
 		this.sex=sex;
 	}
-	public String getSex() {
+	public Sex getSex() {
 		return sex;
 	}
 	public void setBirthday(Date birthday) {
