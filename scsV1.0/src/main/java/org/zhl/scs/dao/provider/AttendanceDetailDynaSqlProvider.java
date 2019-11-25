@@ -22,8 +22,8 @@ public class AttendanceDetailDynaSqlProvider {
 				if(entity.getAttenance() != null){
 					VALUES("attendance_id", "#{attenance.id}");
 				}
-				if(entity.getSigntime() != null){
-                    VALUES("sign_time", "#{sign.time}");
+				if(entity.getSignTime() != null){
+                    VALUES("sign_time", "#{signTime}");
                 }
 			}
 		}.toString();
@@ -42,8 +42,8 @@ public class AttendanceDetailDynaSqlProvider {
 				if(entity.getAttenance() != null){
 					SET(" attendance_id = #{attenance.id} ");
 				}
-				if(entity.getSigntime() != null){
-				    SET(" sign_time = #{sign.time} ");
+				if(entity.getSignTime() != null){
+				    SET(" sign_time = #{signTime} ");
             }
 
 				WHERE(" id = #{id} ");
@@ -70,8 +70,8 @@ public class AttendanceDetailDynaSqlProvider {
 					if(entity.getAttenance() != null){
 						WHERE(" attendance_id = #{attendanceDetail.attenance.id} ");
 					}
-                    if(entity.getSigntime() != null){
-                        WHERE(" sign_time = #{attendanceDetail.sign.time} ");
+                    if(entity.getSignTime() != null){
+                        WHERE(" sign_time = #{attendanceDetail.signTime} ");
                     }
 				}
 			}
@@ -101,8 +101,8 @@ public class AttendanceDetailDynaSqlProvider {
 					if(entity.getAttenance() != null){
 						WHERE(" attendance_id = #{attendanceDetail.attenance.id} ");
 					}
-					if(entity.getSigntime() !=null){
-					    WHERE("sign_time = #{attendanceDetail.sign.time}");
+					if(entity.getSignTime() !=null){
+					    WHERE("sign_time = #{attendanceDetail.signTime}");
                     }
 				}
 			}
