@@ -1,6 +1,7 @@
 package org.zhl.scs.domain.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * 考勤信息条Domain
@@ -14,6 +15,7 @@ public class AttendanceDetailVo implements Serializable {
 	private Integer isattendance;//是否出勤
 	private Integer studentId;//改考勤信息所属学生
 	private Integer attenanceId;//该考勤信息所属考勤表
+	private Date signtime;
 	public AttendanceDetailVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -36,12 +38,12 @@ public class AttendanceDetailVo implements Serializable {
 	public void setAttenanceId(Integer attenanceId) {
 		this.attenanceId=attenanceId;
 	}
-	public Integer getAttenanceId() {
-		return attenanceId;
-	}
+	public Integer getAttenanceId() { return attenanceId; }
+	public Date setSigntime(Date signtime){return signtime;}
+	public Date getSigntime(){return signtime;}
 	@Override
 	public String toString() {
 		return
-			"AttendanceDetail [id="+id+", isattendance="+isattendance+", studentId="+studentId+", attenanceId="+attenanceId+"]";
+			"AttendanceDetail [id="+id+", isattendance="+isattendance+", studentId="+studentId+", attenanceId="+attenanceId+",signtime="+signtime+"]";
 	}
 }

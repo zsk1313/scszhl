@@ -26,6 +26,7 @@ public interface AttendanceDetailDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="isattendance",property="isattendance"),
+        @Result(column="sing_time",property="signtime",javaType=java.util.Date.class),
 		@Result(column="student_id",property="student",one=@One(select="org.zhl.scs.dao.StudentDao.selectByIdWithStudentId",fetchType=FetchType.EAGER)),
 		@Result(column="attendance_id",property="attenance",one=@One(select="org.zhl.scs.dao.AttenanceDao.selectByIdWithAttenanceId",fetchType=FetchType.EAGER))
 	})
@@ -35,6 +36,7 @@ public interface AttendanceDetailDao{
 	@Results({
 		@Result(id=true,column="id",property="id"),
 		@Result(column="isattendance",property="isattendance"),
+        @Result(column="sing_time",property="signtime",javaType=java.util.Date.class),
 		@Result(column="student_id",property="student",one=@One(select="org.zhl.scs.dao.StudentDao.selectByIdWithStudentId",fetchType=FetchType.EAGER)),
 		@Result(column="attendance_id",property="attenance",one=@One(select="org.zhl.scs.dao.AttenanceDao.selectByIdWithAttenanceId",fetchType=FetchType.EAGER))
 	})

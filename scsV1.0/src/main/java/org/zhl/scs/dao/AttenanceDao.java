@@ -22,6 +22,7 @@ public interface AttenanceDao{
 	@SelectProvider(type=AttenanceDynaSqlProvider.class,method="count")
 	Integer count(Map<String, Object> params);
 
+
 	@Select("select * from tb_attenance where ID = #{id}")
 	@Results({
 		@Result(id=true,column="id",property="id"),
@@ -47,6 +48,7 @@ public interface AttenanceDao{
 		@Result(column="id",property="attendanceDetails",many=@Many(select="org.zhl.scs.dao.AttendanceDetailDao.selectByAttenanceId",fetchType=FetchType.LAZY))
 	})
 	List<Attenance> selectByPage(Map<String, Object> params);
+
 
 	@Select("select * from tb_attenance where clazz_id = #{id}")
 	List<Attenance> selectByClazzId(Integer id);

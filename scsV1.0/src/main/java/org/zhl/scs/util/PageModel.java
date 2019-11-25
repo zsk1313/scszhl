@@ -52,6 +52,8 @@ public class PageModel {
 	
 	
 	public int getFirstLimitParam(){
+		if (this.getPageIndex()<=0 )
+			return 0;
 		return (this.getPageIndex()-1)*this.getPageSize() ;
 	}
 	

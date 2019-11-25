@@ -1,6 +1,9 @@
 package org.zhl.scs.domain;
 
+import javax.xml.crypto.Data;
 import java.io.Serializable;
+import java.util.Date;
+
 /**
  * 考勤信息条Domain
  * @author zsk
@@ -13,6 +16,7 @@ public class AttendanceDetail implements Serializable {
 	private Integer isattendance;//是否出勤
 	private Student student;//改考勤信息所属学生
 	private Attenance attenance;//该考勤信息所属考勤表
+	private Date signtime;//记录打卡时间
 	public AttendanceDetail() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -26,21 +30,23 @@ public class AttendanceDetail implements Serializable {
 	public Integer getIsattendance() {
 		return isattendance;
 	}
-	public void setStudent(Student student) {
+	public void setStudent(Attenance student) {
 		this.student=student;
 	}
 	public Student getStudent() {
 		return student;
 	}
-	public void setAttenance(Attenance attenance) {
+	public void setAttenance(AttendanceDetail attenance) {
 		this.attenance=attenance;
 	}
 	public Attenance getAttenance() {
 		return attenance;
 	}
+	public void setSigntime(Date signtime){this.signtime=signtime;}
+	public Data getSigntime(){return (Data) signtime;}
 	@Override
 	public String toString() {
 		return
-			"AttendanceDetail [id="+id+", isattendance="+isattendance+", student="+student+", attenance="+attenance+"]";
+			"AttendanceDetail [id="+id+", isattendance="+isattendance+", student="+student+", attenance="+attenance+", signtime="+signtime+"]";
 	}
 }

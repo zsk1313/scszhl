@@ -22,6 +22,9 @@ public class AttendanceDetailDynaSqlProvider {
 				if(entity.getAttenance() != null){
 					VALUES("attendance_id", "#{attenance.id}");
 				}
+				if(entity.getSigntime() != null){
+                    VALUES("sign_time", "#{sign.time}");
+                }
 			}
 		}.toString();
 	}
@@ -39,6 +42,10 @@ public class AttendanceDetailDynaSqlProvider {
 				if(entity.getAttenance() != null){
 					SET(" attendance_id = #{attenance.id} ");
 				}
+				if(entity.getSigntime() != null){
+				    SET(" sign_time = #{sign.time} ");
+            }
+
 				WHERE(" id = #{id} ");
 			}
 		}.toString();
@@ -63,6 +70,9 @@ public class AttendanceDetailDynaSqlProvider {
 					if(entity.getAttenance() != null){
 						WHERE(" attendance_id = #{attendanceDetail.attenance.id} ");
 					}
+                    if(entity.getSigntime() != null){
+                        WHERE(" sign_time = #{attendanceDetail.sign.time} ");
+                    }
 				}
 			}
 		}.toString();
@@ -91,6 +101,9 @@ public class AttendanceDetailDynaSqlProvider {
 					if(entity.getAttenance() != null){
 						WHERE(" attendance_id = #{attendanceDetail.attenance.id} ");
 					}
+					if(entity.getSigntime() !=null){
+					    WHERE("sign_time = #{attendanceDetail.sign.time}");
+                    }
 				}
 			}
 		}.toString();

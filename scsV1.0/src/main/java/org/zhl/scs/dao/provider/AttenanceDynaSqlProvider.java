@@ -127,6 +127,7 @@ public class AttenanceDynaSqlProvider {
 					if(entity.getCourse() != null){
 						WHERE(" course_id = #{attenance.course.id} ");
 					}
+
 				}
 			}
 		}.toString();
