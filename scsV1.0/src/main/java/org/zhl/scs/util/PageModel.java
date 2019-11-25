@@ -11,6 +11,7 @@ public class PageModel {
 	/** 当前页面 */
 	private int pageIndex ;
 	/** 每页分多少条数据   */
+
 	private int pageSize = ScsConstants.PAGE_DEFAULT_SIZE;
 	
 	/** 总页数  */

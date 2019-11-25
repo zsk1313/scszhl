@@ -30,6 +30,9 @@ public interface CourseDao{
 		@Result(column="code",property="code"),
 		@Result(column="week",property="week"),
 		@Result(column="dateorder",property="dateorder"),
+		@Result(column="classroom",property="classroom"),
+		@Result(column="start_time",property="start_time",javaType=java.util.Date.class),
+		@Result(column="end_time",property="end_time",javaType=java.util.Date.class),
 		@Result(column="teacher_id",property="teacher",one=@One(select="org.zhl.scs.dao.TeacherDao.selectByIdWithTeacherId",fetchType=FetchType.EAGER)),
 		@Result(column="id",property="attenances",many=@Many(select="org.zhl.scs.dao.AttenanceDao.selectByCourseId",fetchType=FetchType.LAZY)),
 		@Result(column="id",property="students",many=@Many(select="org.zhl.scs.dao.StudentDao.selectByCourseId",fetchType=FetchType.LAZY))
@@ -61,5 +64,20 @@ public interface CourseDao{
 
 	@InsertProvider(type=CourseDynaSqlProvider.class,method="insertStudents")
 	void insertStudents(Course entity);
+
+
+	//ljj
+	@Select("select * from tb_course where score>=#{score1} and score <=#{score2}")
+	List<Course> findCourseByFilterOfScore(Double score1,Double score2);
+	@Select("select * from tb_course where score>=#{score}")
+	List<Course> findCourseByGreaterThanScore(Double score);
+	@Select("select * from tb_course where score<=#{score}")
+    List<Course> findCourseByLessThanScore(Double score);
+	@Select("select * from tb_course where dateorder>=#{dateorder1} and dateorder<=#{dateorder2}")
+	List<Course> findCourseByFilterOfDateorder(Integer dateorder1,Integer dateorder2);
+	@Select("select * from tb_course where dateorder>=#{dateorder}")
+	List<Course> findCourseByGreaterThanDateorder(Integer dateorder);
+	@Select("select * from tb_course where dateorder<=#{dateorder}")
+	List<Course> findCourseByLessThanDateorder(Integer dateorder);
 
 }

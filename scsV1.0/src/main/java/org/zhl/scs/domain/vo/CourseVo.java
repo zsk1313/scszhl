@@ -1,6 +1,7 @@
 package org.zhl.scs.domain.vo;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -16,11 +17,20 @@ public class CourseVo implements Serializable {
 	private Double score;//学分
 	private String code;//课程标号
 	private Integer week;//星期
+	private Date start_time;//课程开始时间
+	private Date   end_time;
+	private String classroom;//教室
 	private Integer dateorder;//课程节数（1、2、3、4、5）
-	private Integer teacher;//该课程任课老师
+	private Integer teacherId;//该课程任课老师
 	private List<Integer> attenanceIds;//该课程考勤集合
 	private List<Integer> studentIds;//该课程学生集合
 	public CourseVo() {}
+	public void setStart_time(Date start_time){this.start_time=start_time;}
+	public Date getStart_time(){return start_time;}
+	public void setEnd_time(Date end_time){this.end_time=end_time;}
+	public Date getEnd_time(){return end_time;}
+	public void setClassroom(String classroom){this.classroom=classroom;}
+	public String getClassroom(){return classroom;}
 	public void setId(Integer id) {
 		this.id=id;
 	}
@@ -57,12 +67,8 @@ public class CourseVo implements Serializable {
 	public Integer getDateorder() {
 		return dateorder;
 	}
-	public void setTeacher(Integer teacher) {
-		this.teacher=teacher;
-	}
-	public Integer getTeacher() {
-		return teacher;
-	}
+    public Integer getTeacherId(){return teacherId;}
+    public void setTeacherId(int teacherId){this.teacherId=teacherId;}
 	public List<Integer> getAttenanceIds() {
 		return attenanceIds;
 	}
@@ -78,6 +84,6 @@ public class CourseVo implements Serializable {
 	@Override
 	public String toString() {
 		return
-			"Course [id="+id+", name="+name+", score="+score+", code="+code+", week="+week+", dateorder="+dateorder+", teacher="+teacher+", attenanceIds="+attenanceIds+", studentIds="+studentIds+"]";
+			"Course [id="+id+", name="+name+", score="+score+", code="+code+", week="+week+", dateorder="+dateorder+", teacherId="+teacherId+", attenanceIds="+attenanceIds+", studentIds="+studentIds+"]";
 	}
 }
