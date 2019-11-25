@@ -8,6 +8,8 @@ import java.util.List;
 
 /**
  * 考勤门禁
+ * @author lzs
+ * @version v1.1
  */
 public interface IAttendanceService {
 

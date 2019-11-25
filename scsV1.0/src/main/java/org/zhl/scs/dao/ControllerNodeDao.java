@@ -3,9 +3,11 @@ package org.zhl.scs.dao;
 import java.util.*;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 import org.zhl.scs.dao.provider.ControllerNodeDynaSqlProvider;
 import org.zhl.scs.domain.ControllerNode;
 
+@Repository
 @Mapper
 public interface ControllerNodeDao{
 
@@ -37,7 +39,7 @@ public interface ControllerNodeDao{
 	ControllerNode selectById(Integer id);
 
 	@SelectProvider(type=ControllerNodeDynaSqlProvider.class,method="selectWithParam")
-	@Results({
+	@Results(id = "full_controller", value = {
 		@Result(id=true,column="id",property="id"),
 		@Result(column="code",property="code"),
 		@Result(column="time",property="time",javaType=java.util.Date.class),
@@ -52,5 +54,9 @@ public interface ControllerNodeDao{
 
 	@Select("select * from tb_controller_node where client_id = #{id}")
 	List<ControllerNode> selectByClientId(Integer id);
+
+	@Select("select * from tb_controller_node")
+	@ResultMap(value = "full_controller")
+	List<ControllerNode> selectAll();
 
 }

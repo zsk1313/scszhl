@@ -20,7 +20,14 @@ public class ControllerNodeVo implements Serializable {
 	private String address;//地址
 	private String flag;//标志位
 	private Integer clientId;//客户控制终端
+	private String controlCode; //控制代码
 	public ControllerNodeVo() {}
+	public String getControlCode() {
+		return controlCode;
+	}
+	public void setControlCode(String controlCode) {
+		this.controlCode = controlCode;
+	}
 	public void setId(Integer id) {
 		this.id=id;
 	}
@@ -77,7 +84,17 @@ public class ControllerNodeVo implements Serializable {
 	}
 	@Override
 	public String toString() {
-		return
-			"ControllerNode [id="+id+", code="+code+", time="+time+", type="+type+", status="+status+", value="+value+", address="+address+", flag="+flag+", clientId="+clientId+"]";
+		return "ControllerNodeVo{" +
+				"id=" + id +
+				", code='" + code + '\'' +
+				", time=" + time +
+				", type='" + type + '\'' +
+				", status='" + status + '\'' +
+				", value='" + value + '\'' +
+				", address='" + address + '\'' +
+				", flag='" + flag + '\'' +
+				", clientId=" + clientId +
+				", controlCode='" + controlCode + '\'' +
+				'}';
 	}
 }

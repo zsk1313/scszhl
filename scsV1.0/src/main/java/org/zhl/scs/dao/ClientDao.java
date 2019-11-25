@@ -3,9 +3,11 @@ package org.zhl.scs.dao;
 import java.util.*;
 import org.apache.ibatis.annotations.*;
 import org.apache.ibatis.mapping.FetchType;
+import org.springframework.stereotype.Repository;
 import org.zhl.scs.dao.provider.ClientDynaSqlProvider;
 import org.zhl.scs.domain.Client;
 
+@Repository
 @Mapper
 public interface ClientDao{
 
@@ -42,5 +44,8 @@ public interface ClientDao{
 
 	@Select("select * from tb_client where id = #{client_id}")
 	Client selectByIdWithClientId(@Param("client_id") Integer id);
+
+	@Select("select * from tb_client")
+	List<Client> selectAll();
 
 }
