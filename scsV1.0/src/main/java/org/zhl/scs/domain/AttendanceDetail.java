@@ -16,7 +16,7 @@ public class AttendanceDetail implements Serializable {
 	private Integer isattendance;//是否出勤
 	private Student student;//改考勤信息所属学生
 	private Attenance attenance;//该考勤信息所属考勤表
-	private Date signtime;//记录打卡时间
+	private Date signTime;//记录打卡时间
 	public AttendanceDetail() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -30,23 +30,23 @@ public class AttendanceDetail implements Serializable {
 	public Integer getIsattendance() {
 		return isattendance;
 	}
-	public void setStudent(Attenance student) {
+	public void setStudent(Student student) {
 		this.student=student;
 	}
 	public Student getStudent() {
 		return student;
 	}
-	public void setAttenance(AttendanceDetail attenance) {
+	public void setAttenance(Attenance attenance) {
 		this.attenance=attenance;
 	}
 	public Attenance getAttenance() {
 		return attenance;
 	}
-	public void setSigntime(Date signtime){this.signtime=signtime;}
-	public Data getSigntime(){return (Data) signtime;}
+	public void setSignTime(Date signtime){this.signTime=signtime;}
+	public Data getSignTime(){return (Data) signTime;}
 	@Override
 	public String toString() {
 		return
-			"AttendanceDetail [id="+id+", isattendance="+isattendance+", student="+student+", attenance="+attenance+", signtime="+signtime+"]";
+			"AttendanceDetail [id="+id+", isattendance="+isattendance+", student="+student+", attenance="+attenance+", signTime="+signTime+"]";
 	}
 }

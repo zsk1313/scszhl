@@ -52,13 +52,13 @@ public class Attenance implements Serializable {
 	public String getNote() {
 		return note;
 	}
-	public void setClazz(Attenance clazz) {
+	public void setClazz(Clazz clazz) {
 		this.clazz=clazz;
 	}
 	public Clazz getClazz() {
 		return clazz;
 	}
-	public void setCourse(Attenance course) {
+	public void setCourse(Course course) {
 		this.course=course;
 	}
 	public Course getCourse() {
