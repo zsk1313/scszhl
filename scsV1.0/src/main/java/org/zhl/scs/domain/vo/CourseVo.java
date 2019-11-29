@@ -1,5 +1,7 @@
 package org.zhl.scs.domain.vo;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -17,18 +19,35 @@ public class CourseVo implements Serializable {
 	private Double score;//学分
 	private String code;//课程标号
 	private Integer week;//星期
-	private Date start_time;//课程开始时间
-	private Date   end_time;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date startTime;//课程开始时间
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date   endTime;
 	private String classroom;//教室
 	private Integer dateorder;//课程节数（1、2、3、4、5）
 	private Integer teacherId;//该课程任课老师
 	private List<Integer> attenanceIds;//该课程考勤集合
 	private List<Integer> studentIds;//该课程学生集合
+
+
 	public CourseVo() {}
-	public void setStart_time(Date start_time){this.start_time=start_time;}
-	public Date getStart_time(){return start_time;}
-	public void setEnd_time(Date end_time){this.end_time=end_time;}
-	public Date getEnd_time(){return end_time;}
+
+	public Date getStartTime() {
+		return startTime;
+	}
+
+	public void setStartTime(Date startTime) {
+		this.startTime = startTime;
+	}
+
+	public Date getEndTime() {
+		return endTime;
+	}
+
+	public void setEndTime(Date endTime) {
+		this.endTime = endTime;
+	}
+
 	public void setClassroom(String classroom){this.classroom=classroom;}
 	public String getClassroom(){return classroom;}
 	public void setId(Integer id) {
@@ -81,9 +100,23 @@ public class CourseVo implements Serializable {
 	public void setStudentIds(List<Integer> studentIds) {
 		this.studentIds = studentIds;
 	}
+
+
 	@Override
 	public String toString() {
-		return
-			"Course [id="+id+", name="+name+", score="+score+", code="+code+", week="+week+", dateorder="+dateorder+", teacherId="+teacherId+", attenanceIds="+attenanceIds+", studentIds="+studentIds+"]";
+		return "CourseVo{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				", score=" + score +
+				", code='" + code + '\'' +
+				", week=" + week +
+				", startTime=" + startTime +
+				", endTime=" + endTime +
+				", classroom='" + classroom + '\'' +
+				", dateorder=" + dateorder +
+				", teacherId=" + teacherId +
+				", attenanceIds=" + attenanceIds +
+				", studentIds=" + studentIds +
+				'}';
 	}
 }

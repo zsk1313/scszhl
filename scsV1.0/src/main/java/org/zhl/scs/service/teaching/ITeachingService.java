@@ -7,6 +7,7 @@ import org.zhl.scs.domain.Course;
 import org.zhl.scs.domain.Student;
 import org.zhl.scs.domain.vo.ClazzVo;
 import org.zhl.scs.domain.vo.CourseVo;
+import org.zhl.scs.util.PageModel;
 
 import javax.xml.crypto.Data;
 import java.lang.reflect.InvocationTargetException;
@@ -65,7 +66,7 @@ public interface ITeachingService {
      * @param clazzVo
      * @return 班级集合
      */
-    List<Clazz> selectClazzs(ClazzVo clazzVo) throws InvocationTargetException, IllegalAccessException;
+    List<Clazz> selectClazzs(ClazzVo clazzVo,PageModel pageModel) throws InvocationTargetException, IllegalAccessException;
 
 
     //-----------课程管理---------------
@@ -108,7 +109,7 @@ public interface ITeachingService {
      * @param courseVo
      * @return 课程集合
      */
-    List<Course> selectCourses(CourseVo courseVo) throws InvocationTargetException, IllegalAccessException;
+    List<Course> selectCourses(CourseVo courseVo, PageModel pageModel) throws InvocationTargetException, IllegalAccessException;
 
     /**
      * 查询一个班级里的所有学生信息
