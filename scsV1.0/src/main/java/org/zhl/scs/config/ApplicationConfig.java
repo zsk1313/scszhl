@@ -4,6 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
+import org.zhl.scs.service.device.monitor.MonitorServer;
+import org.zhl.scs.service.device.monitor.Monitoring;
 import org.zhl.scs.util.DaoUtil;
 import org.zhl.scs.util.ServiceUtil;
 
@@ -25,4 +28,10 @@ public class ApplicationConfig {
 
     @Bean
     public ServiceUtil initServiceUtil(){ return new ServiceUtil(applicationContext,initDaoUtil()); }
+
+    @Bean
+    public MonitorServer initMonitorServer() throws InterruptedException {
+        return new MonitorServer(7777);
+    }
+
 }

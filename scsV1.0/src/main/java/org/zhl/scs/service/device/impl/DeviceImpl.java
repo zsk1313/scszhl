@@ -1,16 +1,24 @@
 package org.zhl.scs.service.device.impl;
 
+import io.netty.channel.Channel;
+import io.netty.channel.pool.FixedChannelPool;
+import io.netty.channel.pool.SimpleChannelPool;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.FutureListener;
 import org.springframework.stereotype.Service;
 import org.zhl.scs.domain.vo.ClientVo;
 import org.zhl.scs.domain.vo.ControllerNodeVo;
 import org.zhl.scs.domain.vo.SensorNodeVo;
 import org.zhl.scs.service.device.Device;
+import org.zhl.scs.service.device.monitor.Monitoring;
 import org.zhl.scs.util.DeviceUtils;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 物理设备接口实现类
@@ -19,17 +27,20 @@ import java.util.Arrays;
  */
 @Service
 public class DeviceImpl implements Device {
+
+    private Map<String, Monitoring> monitoringMap = new HashMap<>();
+
     /**
      * @see Device
      */
     @Override
-    public Object getSensorValue(SensorNodeVo sensorNodeVo) throws IOException {
+    public Object getSensorValue(SensorNodeVo sensorNodeVo) throws IOException, InterruptedException {
         //TODO -从硬件设备接口获取传感器数值
         //该方法可以分成两个，一个只读取一次，一个死循环不断读取，看服务端的编写
 
         //test
 
-        int port = 55532;
+       /* int port = 55532;
         String host = "127.0.0.1";
         Socket socket = new Socket(host, port);
         System.out.println("模拟Device获取传感器数值，客户端开启----");
@@ -50,7 +61,35 @@ public class DeviceImpl implements Device {
         System.out.println("Device---- 传感器信息：" + sensorNodeVo);
 
         inputStream.close();
-        socket.close();
+        socket.close();*/
+
+       //test
+        if (sensorNodeVo.getClientId() == null) {
+            throw new IllegalArgumentException("客户端id不能为空");
+        }
+        Monitoring monitoring = null;
+        String cid = sensorNodeVo.getClientId().toString();
+        if (monitoringMap.containsKey(cid)) {
+            monitoring = monitoringMap.get(cid);
+        } else {
+            monitoring = new Monitoring();
+            monitoring.run();
+            monitoringMap.put(cid, monitoring);
+        }
+
+//        SimpleChannelPool pool = monitoring.getPoolMap().get(Monitoring.serverAddr);
+        FixedChannelPool pool = monitoring.getFixedChannelPool();
+        Future<Channel> acquire = pool.acquire();
+        acquire.addListener((FutureListener<Channel>) future -> {
+            if (future.isSuccess()) {
+                //监听传值
+                Channel channel = future.getNow();
+                //触发读
+                channel.read();
+                //回收
+                pool.release(channel);
+            }
+        });
 
         return sensorNodeVo;
     }

@@ -14,6 +14,8 @@ import org.zhl.scs.domain.vo.ControllerNodeVo;
 import org.zhl.scs.domain.vo.SensorNodeVo;
 import org.zhl.scs.service.device.Device;
 import org.zhl.scs.service.device.IDeviceService;
+import org.zhl.scs.service.device.monitor.MonitorServer;
+import org.zhl.scs.service.device.monitor.Monitoring;
 import org.zhl.scs.util.AssignByFieldName;
 import org.zhl.scs.util.PageModel;
 import org.zhl.scs.util.common.devices.AirConditioner;
@@ -105,7 +107,7 @@ public class DeviceServiceImplTest {
 
     //测试Service层 updateDevice方法（SensorNode）
     @Test
-    public void updateSensorNode() {
+    public void updateSensorNode() throws InvocationTargetException, IllegalAccessException {
         //省略查询过程，省略vo转po，假设已经经过查询获得id索引
         //模拟controller层传入参数
         SensorNode sensorNode = new SensorNode();
@@ -123,7 +125,7 @@ public class DeviceServiceImplTest {
 
     //测试Service层 updateDevice方法（ControllerNode）
     @Test
-    public void updateControllerNode() {
+    public void updateControllerNode() throws InvocationTargetException, IllegalAccessException {
         //省略查询过程，省略vo转po，假设已经经过查询获得id索引
         //模拟controller层传入参数
         ControllerNode controllerNode = new ControllerNode();
@@ -379,7 +381,7 @@ public class DeviceServiceImplTest {
 
     //测试Service层 getSensorDeviceValue方法
     @Test
-    public void getSensorsDeviceValue() throws InvocationTargetException, IllegalAccessException, IOException {
+    public void getSensorsDeviceValue() throws InvocationTargetException, IllegalAccessException, IOException, InterruptedException {
         //获取设备数据
         //可以传入一个或者多个客户端
 
@@ -509,7 +511,7 @@ public class DeviceServiceImplTest {
 
     //模拟传感器中控读取参数
     @Test
-    public void deviceServer() throws IOException {
+    public void deviceServer() throws IOException, InterruptedException {
         //指定监听端口
         String value;
         int port = 55533;
@@ -555,7 +557,7 @@ public class DeviceServiceImplTest {
             public void run() {
                 try {
                     device.getSensorValue(huSensor);
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
             }
@@ -564,4 +566,22 @@ public class DeviceServiceImplTest {
 
         Thread.sleep(30000);
     }
+
+    @Test
+    public void testServer() throws InterruptedException {
+        Monitoring monitoring = new Monitoring();
+        monitoring.run();
+        Thread.sleep(15000);
+        monitoring.setExit(true);
+
+    }
+
+    @Test
+    public void testServer2() throws InterruptedException, IOException {
+        SensorNodeVo sensorNodeVo = new SensorNodeVo();
+        sensorNodeVo.setClientId(1);
+        device.getSensorValue(sensorNodeVo);
+        Thread.sleep(30000);
+    }
+
 }

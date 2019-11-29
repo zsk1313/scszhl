@@ -2,6 +2,8 @@ package org.zhl.scs.service.device.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 import org.zhl.scs.dao.ClientDao;
 import org.zhl.scs.dao.ControllerNodeDao;
 import org.zhl.scs.dao.SensorNodeDao;
@@ -47,8 +49,9 @@ public class DeviceServiceImpl implements IDeviceService {
      * @param device 设备（传感器or控制器）
      * @see IDeviceService
      */
+    @Transactional
     @Override
-    public void saveDevice(Object device) {
+    public void saveDevice(Object device) throws InvocationTargetException, IllegalAccessException {
         if (device == null) {
             throw new IllegalArgumentException("设备数据不能为空");
         }
@@ -61,6 +64,32 @@ public class DeviceServiceImpl implements IDeviceService {
             //控制器
             controllerNodeDao.save((ControllerNode) device);
             System.out.println("----Service层---- 保存为控制器" + "\n" + device);
+        } else if (device instanceof SensorNodeVo) {
+            SensorNode sensorNode = new SensorNode();
+            AssignByFieldName.getInstance().Assign(device, sensorNode);
+            int cid = ((SensorNodeVo) device).getClientId();
+            if (!StringUtils.isEmpty(cid)) {
+                Client client = new Client();
+                client.setId(cid);
+                sensorNode.setClient(client);
+            } else {
+                throw new IllegalArgumentException("客户端id不能为空");
+            }
+            sensorNodeDao.save(sensorNode);
+            System.out.println("----Service层---- 保存为传感器" + "\n" + device);
+        } else if (device instanceof ControllerNodeVo) {
+            ControllerNode controllerNode = new ControllerNode();
+            AssignByFieldName.getInstance().Assign(device, controllerNode);
+            int cid = ((ControllerNodeVo) device).getClientId();
+            if (!StringUtils.isEmpty(cid)) {
+                Client client = new Client();
+                client.setId(cid);
+                controllerNode.setClient(client);
+            } else {
+                throw new IllegalArgumentException("客户端id不能为空");
+            }
+            controllerNodeDao.save(controllerNode);
+            System.out.println("----Service层---- 保存为控制器" + "\n" + device);
         } else {
             throw new IllegalArgumentException("设备数据非法");
         }
@@ -70,8 +99,9 @@ public class DeviceServiceImpl implements IDeviceService {
      * @param device
      * @see IDeviceService
      */
+    @Transactional
     @Override
-    public void updateDevice(Object device) {
+    public void updateDevice(Object device) throws InvocationTargetException, IllegalAccessException {
         if (device == null) {
             throw new IllegalArgumentException("设备数据不能为空");
         }
@@ -84,6 +114,16 @@ public class DeviceServiceImpl implements IDeviceService {
             //控制器
             controllerNodeDao.update((ControllerNode) device);
             System.out.println("Service层---- 更新控制器" + "\n" + device);
+        } else if (device instanceof SensorNodeVo) {
+            SensorNode sensorNode = new SensorNode();
+            AssignByFieldName.getInstance().Assign(device, sensorNode);
+            sensorNodeDao.update(sensorNode);
+            System.out.println("Service层---- 更新传感器" + "\n" + device);
+        } else if (device instanceof ControllerNodeVo) {
+            ControllerNode controllerNode = new ControllerNode();
+            AssignByFieldName.getInstance().Assign(device, controllerNode);
+            controllerNodeDao.update(controllerNode);
+            System.out.println("Service层---- 更新控制器" + "\n" + device);
         } else {
             throw new IllegalArgumentException("设备数据非法");
         }
@@ -93,6 +133,7 @@ public class DeviceServiceImpl implements IDeviceService {
      * @param device
      * @see IDeviceService
      */
+    @Transactional
     @Override
     public void deleteDevice(Object device) {
         if (device == null) {
@@ -102,11 +143,17 @@ public class DeviceServiceImpl implements IDeviceService {
         if (device instanceof SensorNode) {
             //传感器
             sensorNodeDao.deleteById(((SensorNode) device).getId());
-            System.out.println("Service层---- 移除传感器" + "\n" + device);
+            System.out.println("Service层---- 移除传感器" + "\n" + "id = " + ((SensorNode) device).getId());
         } else if (device instanceof ControllerNode) {
             //控制器
             controllerNodeDao.deleteById(((ControllerNode) device).getId());
-            System.out.println("Service层---- 移除控制器" + "\n" + device);
+            System.out.println("Service层---- 移除控制器" + "\n" + "id = " + ((ControllerNode) device).getId());
+        } else if (device instanceof SensorNodeVo) {
+            sensorNodeDao.deleteById(((SensorNodeVo) device).getId());
+            System.out.println("Service层---- 移除传感器" + "\n" + "id = " + ((SensorNodeVo) device).getId());
+        } else if (device instanceof ControllerNodeVo) {
+            controllerNodeDao.deleteById(((ControllerNodeVo) device).getId());
+            System.out.println("Service层---- 移除控制器" + "\n" + "id = " + ((ControllerNodeVo) device).getId());
         } else {
             throw new IllegalArgumentException("设备数据非法");
         }
@@ -128,6 +175,15 @@ public class DeviceServiceImpl implements IDeviceService {
     public List<ControllerNode> selectAllController() {
         System.out.println("Service层---- 查询全部ControllerNode");
         return controllerNodeDao.selectAll();
+    }
+
+    /**
+     * @see IDeviceService
+     */
+    @Override
+    public List<Client> selectAllClient() {
+        System.out.println("Service层---- 查询全部Client");
+        return clientDao.selectAll();
     }
 
     /**
@@ -199,7 +255,7 @@ public class DeviceServiceImpl implements IDeviceService {
      * @see IDeviceService
      */
     @Override
-    public Map<Object, Object> getSensorsDeviceValue(List<ClientVo> clientVos) throws InvocationTargetException, IllegalAccessException, IOException {
+    public Map<Object, Object> getSensorsDeviceValue(List<ClientVo> clientVos) throws InvocationTargetException, IllegalAccessException, IOException, InterruptedException {
         System.out.println("Service---- 获取传感器数值");
         //TODO -从传感器设备获取数据，2层封装（待优化）（device改变，需要修改）
         List<SensorNodeVo> sensorNodeVos = new ArrayList<>();
@@ -257,7 +313,7 @@ public class DeviceServiceImpl implements IDeviceService {
      * @see IDeviceService
      */
     @Override
-    public SensorNodeVo getSingleSensorValue(SensorNodeVo sensorNodeVo) throws IOException {
+    public SensorNodeVo getSingleSensorValue(SensorNodeVo sensorNodeVo) throws IOException, InterruptedException {
         System.out.println("Service---- 读取控制器参数");
         return (SensorNodeVo) device.getSensorValue(sensorNodeVo);
     }
@@ -525,7 +581,7 @@ public class DeviceServiceImpl implements IDeviceService {
                 SensorNodeVo humiditySensorWhitValue = null;
                 try {
                     humiditySensorWhitValue = getSingleSensorValue(humiditySensor);
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
                 System.out.println(humiditySensorWhitValue);
@@ -571,7 +627,7 @@ public class DeviceServiceImpl implements IDeviceService {
                 try {
                     smokeSensorWithValue = getSingleSensorValue(smokeSensor);
                     pm25SensorWithValue = getSingleSensorValue(pm25Sensor);
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
                 System.out.println(smokeSensorWithValue + "\n" + pm25SensorWithValue);
@@ -589,6 +645,8 @@ public class DeviceServiceImpl implements IDeviceService {
                     //大于低值，开风扇
                     fan.setControlCode(Fan.STEP_ONE.getCmd());
                     device.control(fan);
+                } else {
+                    continue;
                 }
                 if (Integer.parseInt(pm25SensorWithValue.getValue()) < Integer.parseInt(schemeValue[0])) {
                     fan.setControlCode(Fan.CLOSE.getCmd());
@@ -621,7 +679,7 @@ public class DeviceServiceImpl implements IDeviceService {
                 SensorNodeVo lightSensorWithVale = null;
                 try {
                     lightSensorWithVale = getSingleSensorValue(lightSensor);
-                } catch (IOException e) {
+                } catch (IOException | InterruptedException e) {
                     e.printStackTrace();
                 }
                 System.out.println(lightSensorWithVale);
