@@ -1,6 +1,12 @@
 package org.zhl.scs.service;
 
+import io.netty.channel.Channel;
+import io.netty.channel.pool.FixedChannelPool;
+import io.netty.util.concurrent.Future;
+import io.netty.util.concurrent.FutureListener;
 import org.junit.Test;
+import org.zhl.scs.service.device.monitor.MonitorServer;
+import org.zhl.scs.service.device.monitor.Monitoring;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -83,6 +89,32 @@ public class DeviceTest {
 
         inputStream.close();
         socket.close();
+    }
+
+    @Test
+    public void serverTest() throws InterruptedException {
+        new MonitorServer(7777).run();
+    }
+
+    @Test
+    public void clientTest() throws InterruptedException {
+        Monitoring monitoring = new Monitoring();
+        monitoring.run();
+        FixedChannelPool pool = monitoring.getFixedChannelPool();
+        Future<Channel> acquire = pool.acquire();
+        acquire.addListener((FutureListener<Channel>) future -> {
+            if (future.isSuccess()) {
+                //监听传值
+                Channel channel = future.getNow();
+                //触发读
+                //channel.writeAndFlush("hello");
+                channel.read();
+                //回收
+                pool.release(channel);
+            }
+        });
+        Thread.sleep(15000);
+
     }
 
 }

@@ -28,14 +28,14 @@ public interface IDeviceService {
      *
      * @param device
      */
-    void saveDevice(Object device);
+    void saveDevice(Object device) throws InvocationTargetException, IllegalAccessException;
 
     /**
      * 更新设备
      *
      * @param device
      */
-    void updateDevice(Object device);
+    void updateDevice(Object device) throws InvocationTargetException, IllegalAccessException;
 
     /**
      * 删除设备
@@ -57,6 +57,12 @@ public interface IDeviceService {
      * @return
      */
     List<ControllerNode> selectAllController();
+
+    /**
+     * 查询全部客户端
+     * @return
+     */
+    List<Client> selectAllClient();
 
     //--------环境监控--------
 
@@ -90,7 +96,7 @@ public interface IDeviceService {
      * @param clientVos 客户端集合
      * @return 返回一个map，(key-ClientVo, value-List<SensorNodeVo>)
      */
-    Map<Object, Object> getSensorsDeviceValue(List<ClientVo> clientVos) throws InvocationTargetException, IllegalAccessException, IOException;
+    Map<Object, Object> getSensorsDeviceValue(List<ClientVo> clientVos) throws InvocationTargetException, IllegalAccessException, IOException, InterruptedException;
 
     /**
      * 获取单个传感器
@@ -107,7 +113,7 @@ public interface IDeviceService {
      * @param sensorNodeVo
      * @return
      */
-    SensorNodeVo getSingleSensorValue(SensorNodeVo sensorNodeVo) throws IOException;
+    SensorNodeVo getSingleSensorValue(SensorNodeVo sensorNodeVo) throws IOException, InterruptedException;
 
     /**
      * 传感器数据阈值判断（用户自定义阈值）

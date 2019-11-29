@@ -1,5 +1,7 @@
 package org.zhl.scs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -13,6 +15,7 @@ public class SensorNode implements Serializable {
 
 	private Integer id;//id主键
 	private String code;//编号
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date time;//时间
 	private String type;//类型
 	private String status;//状态

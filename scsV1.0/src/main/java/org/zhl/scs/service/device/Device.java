@@ -20,7 +20,7 @@ public interface Device {
      * @param sensorNodeVo 传感器信息
      * @return
      */
-    Object getSensorValue(SensorNodeVo sensorNodeVo) throws IOException;
+    Object getSensorValue(SensorNodeVo sensorNodeVo) throws IOException, InterruptedException;
 
     /**
      * 通知设备报警
