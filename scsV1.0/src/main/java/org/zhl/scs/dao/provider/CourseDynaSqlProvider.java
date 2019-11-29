@@ -17,10 +17,10 @@ public class CourseDynaSqlProvider {
 				if(entity.getClassroom() != null){
 					VALUES("classroom", "#{classroom}");
 				}
-				if(entity.getStart_time()!= null){
+				if(entity.getStartTime()!= null){
 					VALUES("start_time", "#{start_time}");
 				}
-				if(entity.getEnd_time() != null){
+				if(entity.getEndTime() != null){
 					VALUES("end_time", "#{end_time}");
 				}
 				if(entity.getName() != null && !entity.getName().equals("")){
@@ -55,10 +55,10 @@ public class CourseDynaSqlProvider {
 				if(entity.getClassroom() != null){
 					SET("classroom=#{classroom}");
 				}
-				if(entity.getStart_time()!= null){
+				if(entity.getStartTime()!= null){
 					SET("start_time=#{start_time}");
 				}
-				if(entity.getEnd_time() != null){
+				if(entity.getEndTime() != null){
 					SET("end_time=#{end_time}");
 				}
 				if(entity.getScore() != null ){
@@ -103,10 +103,10 @@ public class CourseDynaSqlProvider {
 					if(entity.getClassroom() != null){
 						WHERE(" classroom LIKE CONCAT ('%',#{course.classroom},'%') ");
 					}
-					if(entity.getStart_time() != null){
+					if(entity.getStartTime() != null){
 						WHERE(" start_time = #{course.start_time} ");
 					}
-					if(entity.getEnd_time()!= null){
+					if(entity.getEndTime()!= null){
 						WHERE(" end_time = #{course.end_time} ");
 					}
 					if(entity.getWeek() != null){
@@ -152,10 +152,10 @@ public class CourseDynaSqlProvider {
 					if(entity.getClassroom() != null){
 						WHERE(" classroom LIKE CONCAT ('%',#{course.classroom},'%') ");
 					}
-					if(entity.getStart_time() != null){
+					if(entity.getStartTime() != null){
 						WHERE(" start_time = #{course.start_time} ");
 					}
-					if(entity.getEnd_time()!= null){
+					if(entity.getEndTime()!= null){
 						WHERE(" end_time = #{course.end_time} ");
 					}
 					if(entity.getDateorder() != null){

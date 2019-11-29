@@ -12,6 +12,7 @@ import org.zhl.scs.domain.Student;
 import org.zhl.scs.domain.vo.ClazzVo;
 import org.zhl.scs.domain.vo.CourseVo;
 import org.zhl.scs.service.teaching.impl.TeachingServiceImpl;
+import org.zhl.scs.util.PageModel;
 
 import javax.xml.crypto.Data;
 import java.lang.reflect.InvocationTargetException;
@@ -77,7 +78,8 @@ public class ITeachingServiceTests {
 //        List<Clazz> list=new ArrayList<>();
         ClazzVo clazzVo=new ClazzVo();
         clazzVo.setDescription("软件1164班");
-        List<Clazz> list=teachingService.selectClazzs(clazzVo);
+        PageModel pageModel=new PageModel();
+        List<Clazz> list=teachingService.selectClazzs(clazzVo,pageModel);
         for (int i=0;i<list.size();i++){
             System.out.println(list.get(i).toString());
         }
@@ -94,8 +96,8 @@ public class ITeachingServiceTests {
         courseVo.setName("林梓燊的产后护理");
         courseVo.setScore(1.2);
         courseVo.setClassroom("科技楼");
-        courseVo.setStart_time(new Date());
-        courseVo.setEnd_time(new Date());
+        courseVo.setStartTime(new Date());
+        courseVo.setEndTime(new Date());
         courseVo.setTeacherId(3);
         courseVo.setWeek(2);
         courseVo.setDateorder(2);
@@ -129,8 +131,8 @@ public class ITeachingServiceTests {
     public void  testselectCourses() throws InvocationTargetException, IllegalAccessException {
 //        List<Course> list=new ArrayList<>();
         CourseVo courseVo=new CourseVo();
-        courseVo.setDateorder(2);
-        List<Course> list=teachingService.selectCourses(courseVo);
+        PageModel pageModel=new PageModel();
+        List<Course> list=teachingService.selectCourses(courseVo,pageModel);
         for (int i=0;i<list.size();i++){
             System.out.println(list.get(i).toString());
         }
@@ -211,10 +213,6 @@ public class ITeachingServiceTests {
         int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
         if (w < 0)
             w = 0;
-
-
-
-
         SimpleDateFormat formatter = new SimpleDateFormat("HH");
         String dateString=formatter.format(date);
         int courseNum=Integer.parseInt(dateString);

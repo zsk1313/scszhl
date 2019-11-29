@@ -40,8 +40,8 @@ public class CourseTests {
         course.setId(7);
         course.setName("ljj");
         course.setClassroom("中海楼04002");
-        course.setStart_time(new Date());
-        course.setEnd_time(new Date());
+        course.setStartTime(new Date());
+        course.setEndTime(new Date());
         course.setScore(59.9);
         course.setCode("23124");
         course.setWeek(3);
@@ -56,8 +56,8 @@ public class CourseTests {
         Course course=new Course();
         course.setId(7);
         course.setClassroom("中海楼04032");
-        course.setStart_time(new Date());
-        course.setEnd_time(new Date());
+        course.setStartTime(new Date());
+        course.setEndTime(new Date());
         course.setName("ljjpulse");
         course.setScore(99.9);
         course.setCode("32087");

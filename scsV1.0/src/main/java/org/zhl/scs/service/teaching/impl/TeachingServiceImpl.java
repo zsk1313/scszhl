@@ -110,7 +110,7 @@ public class TeachingServiceImpl implements ITeachingService {
      * @throws IllegalAccessException
      */
     @Override
-    public List<Clazz> selectClazzs(ClazzVo clazzVo) throws InvocationTargetException, IllegalAccessException {
+    public List<Clazz> selectClazzs(ClazzVo clazzVo,PageModel pageModel) throws InvocationTargetException, IllegalAccessException {
         Map<String, Object> params = new HashMap<>();
         List<Clazz> list=new ArrayList<>();
         Clazz clazz = new Clazz();
@@ -118,9 +118,8 @@ public class TeachingServiceImpl implements ITeachingService {
         params.put("clazz", clazz);
         int count = clazzDao.count(params);
         System.out.println(count);
-        PageModel pageModel = new PageModel();
         pageModel.setRecordCount(count);
-        pageModel.setPageIndex(2);
+
 
         params.put("pageModel", pageModel);
         for (Clazz clazz1 : clazzDao.selectByPage(params)) {
@@ -194,7 +193,7 @@ public class TeachingServiceImpl implements ITeachingService {
      * @throws IllegalAccessException
      */
     @Override
-    public List<Course> selectCourses(CourseVo courseVo) throws InvocationTargetException, IllegalAccessException {
+    public List<Course> selectCourses(CourseVo courseVo,PageModel pageModel) throws InvocationTargetException, IllegalAccessException {
 
         Map<String, Object> params = new HashMap<>();
         List<Course> list=new ArrayList<>();
@@ -202,9 +201,7 @@ public class TeachingServiceImpl implements ITeachingService {
         AssignByFieldName.getInstance().Assign(courseVo,course);
         params.put("course", course);
         int count = courseDao.count(params);
-        PageModel pageModel = new PageModel();
         pageModel.setRecordCount(count);
-        pageModel.setPageIndex(1);
         params.put("pageModel", pageModel);
         for (Course course1 : courseDao.selectByPage(params)) {
             list.add(course1);
@@ -325,7 +322,7 @@ public class TeachingServiceImpl implements ITeachingService {
         Date date=  new Date();
         Course course=new Course();
         course=courseDao.selectById(id);
-        if (course.getEnd_time().before(date))
+        if (course.getEndTime().before(date))
             return true;
         else
             return false;

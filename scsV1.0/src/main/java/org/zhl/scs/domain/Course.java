@@ -1,5 +1,7 @@
 package org.zhl.scs.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.io.Serializable;
 
 import java.util.Date;
@@ -20,16 +22,31 @@ public class Course implements Serializable {
 	private String classroom;//教室
 	private Integer dateorder;//课程节数（1、2、3、4、5）
 	private Teacher teacher;//该课程任课老师
-	private Date   start_time;//课程开始时间
-	private Date   end_time;
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date   startTime;//课程开始时间
+	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
+	private Date   endTime;
 	private List<Attenance> attenances;//该课程考勤集合
 	private List<Student> students;//该课程学生集合
 	public Course() {}
-	public void setStart_time(Date start_time){this.start_time=start_time;}
-	public Date getStart_time(){return start_time;}
-	public void setEnd_time(Date end_time){this.end_time=end_time;}
-	public Date getEnd_time(){return end_time;}
-	public void setClassroom(String classroom){this.classroom=classroom;}
+
+    public Date getStartTime() {
+        return startTime;
+    }
+
+    public void setStartTime(Date startTime) {
+        this.startTime = startTime;
+    }
+
+    public Date getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+    }
+
+    public void setClassroom(String classroom){this.classroom=classroom;}
 	public String getClassroom(){return classroom;}
 	public void setId(Integer id) {
 		this.id=id;
@@ -89,6 +106,6 @@ public class Course implements Serializable {
 	@Override
 	public String toString() {
 		return
-			"Course [id="+id+", name="+name+", score="+score+", start_time="+start_time+", end_time="+end_time+", classroom="+classroom+", code="+code+", week="+week+", dateorder="+dateorder+", teacher="+teacher+", attenances="+attenances+", students="+students+"]";
+			"Course [id="+id+", name="+name+", score="+score+", start_time="+startTime+", end_time="+endTime+", classroom="+classroom+", code="+code+", week="+week+", dateorder="+dateorder+", teacher="+teacher+", attenances="+attenances+", students="+students+"]";
 	}
 }
