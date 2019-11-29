@@ -13,9 +13,9 @@ public class AttendanceDetailVo implements Serializable {
 
 	private Integer id;//id主键
 	private Integer isattendance;//是否出勤
-	private Integer studentId;//改考勤信息所属学生
+	private Integer studentId;//该考勤信息所属学生
 	private Integer attenanceId;//该考勤信息所属考勤表
-	private Date signtime;
+	private Date signTime;//签到时间
 	public AttendanceDetailVo() {}
 	public void setId(Integer id) {
 		this.id=id;
@@ -39,11 +39,18 @@ public class AttendanceDetailVo implements Serializable {
 		this.attenanceId=attenanceId;
 	}
 	public Integer getAttenanceId() { return attenanceId; }
-	public Date setSigntime(Date signtime){return signtime;}
-	public Date getSigntime(){return signtime;}
+
+	public Date getSignTime() {
+		return signTime;
+	}
+
+	public void setSignTime(Date signTime) {
+		this.signTime = signTime;
+	}
+
 	@Override
 	public String toString() {
 		return
-			"AttendanceDetail [id="+id+", isattendance="+isattendance+", studentId="+studentId+", attenanceId="+attenanceId+",signtime="+signtime+"]";
+			"AttendanceDetail [id="+id+", isattendance="+isattendance+", studentId="+studentId+", attenanceId="+attenanceId+",signTime="+signTime+"]";
 	}
 }

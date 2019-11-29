@@ -18,7 +18,6 @@ public class Attenance implements Serializable {
 	private Integer total;//应到人数
 	private Integer actual;//实到人数
 	private String note;//备注
-	private Clazz clazz;//班级
 	private Course course;//课程
 	private List<AttendanceDetail> attendanceDetails;//考勤信息条集合
 	public Attenance() {}
@@ -52,12 +51,6 @@ public class Attenance implements Serializable {
 	public String getNote() {
 		return note;
 	}
-	public void setClazz(Clazz clazz) {
-		this.clazz=clazz;
-	}
-	public Clazz getClazz() {
-		return clazz;
-	}
 	public void setCourse(Course course) {
 		this.course=course;
 	}
@@ -73,6 +66,6 @@ public class Attenance implements Serializable {
 	@Override
 	public String toString() {
 		return
-			"Attenance [id="+id+", date="+date+", total="+total+", actual="+actual+", note="+note+", clazz="+clazz+", course="+course+", attendanceDetails="+attendanceDetails+"]";
+			"Attenance [id="+id+", date="+date+", total="+total+", actual="+actual+", note="+note+", course="+course+", attendanceDetails="+attendanceDetails+"]";
 	}
 }
