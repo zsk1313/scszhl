@@ -27,16 +27,12 @@ public class AttendanceDaoTest<pbulic> {
     @Test
     //测试dao层保存方法
     public void testAttenancesave() {
-        Clazz clazz = new Clazz();
-        clazz.setId(1);
         Course course = new Course();
         course.setId(1);
         Attenance attenance = new Attenance();
-        attenance.setId(2);
         attenance.setDate(new Date());
         attenance.setTotal(10);
         attenance.setActual(30);
-        attenance.setClazz(clazz);
         attenance.setCourse(course);
         attenanceDao.save(attenance);
 
@@ -46,8 +42,6 @@ public class AttendanceDaoTest<pbulic> {
     @Test
     //测试跟新方法，该方法只能修改已有记录
     public void testAttenanceupdate() {
-        Clazz clazz = new Clazz();
-        clazz.setId(1);
         Course course = new Course();
         course.setId(1);
         Attenance attenance = new Attenance();
@@ -55,7 +49,6 @@ public class AttendanceDaoTest<pbulic> {
         attenance.setDate(new Date());
         attenance.setTotal(15);
         attenance.setActual(30);
-        attenance.setClazz(clazz);
         attenance.setCourse(course);
         attenanceDao.update(attenance);
 
@@ -115,9 +108,6 @@ public class AttendanceDaoTest<pbulic> {
         pageModel.setPageIndex(1);
 
         params.put("pagemodel", pageModel);
-        for (Attenance attenance1 : attenanceDao.selectByClazzId(1)) {
-            System.out.println(attenance1);
-        }
 
     }
 

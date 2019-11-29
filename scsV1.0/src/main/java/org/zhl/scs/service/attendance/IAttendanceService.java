@@ -1,6 +1,8 @@
 package org.zhl.scs.service.attendance;
 
 import org.zhl.scs.domain.Attenance;
+import org.zhl.scs.domain.AttendanceDetail;
+import org.zhl.scs.domain.Student;
 import org.zhl.scs.domain.vo.AttenanceVo;
 import org.zhl.scs.domain.vo.AttendanceDetailVo;
 import org.zhl.scs.domain.vo.CourseVo;
@@ -30,7 +32,7 @@ public interface IAttendanceService {
      *
      * @param attenanceVo 考勤表
      */
-    void updateAttendance(AttenanceVo attenanceVo);
+    void updateAttendance(AttenanceVo attenanceVo) throws InvocationTargetException, IllegalAccessException;
 
     /**
      * 删除考勤表
@@ -40,20 +42,20 @@ public interface IAttendanceService {
     void deleteAttendance(AttenanceVo attenanceVo);
 
     /**
-     * 查询考勤表
+     * 根据课程ID查询考勤表
      *
-     * @param attenance   pageModel
+     * @param attenanceVo
      * @return count
      */
-    Attenance selectAttendance(Attenance attenance, PageModel pageModel);
+    List<Attenance> selectAttendances(AttenanceVo attenanceVo) throws InvocationTargetException, IllegalAccessException;
 
     /**
-     * 根据班级id或课程id查询考勤表（可以为空），判定为空则不加条件
+     * 根据学生id查询考勤表（不可以为空）
      *
-     * @param attenance   pageModel
-     * @return attenances
+     * @param  attendanceDetailVo
+     *
      */
-    List<Attenance> selectAttendances(Attenance attenance, PageModel pageModel);
+   List<AttendanceDetail> selectAttendanceDetails(AttendanceDetailVo attendanceDetailVo) throws InvocationTargetException, IllegalAccessException;
     /**发布考勤表，或者设定时间，自动发布考勤表
      *
      *
@@ -63,14 +65,6 @@ public interface IAttendanceService {
      Attenance  publishAttendances(CourseVo courseVo);
 
     //---------门禁管理----------
-
-    /**
-     * 门禁安全识别
-     *
-     * @param item
-     */
-    void identity(Object item);
-
     /**
      * 记录考勤
      *
@@ -85,10 +79,26 @@ public interface IAttendanceService {
      */
     void note(AttenanceVo attenanceVo);
 
+    /**
+     * 门禁安全识别
+     *
+     * @param item
+     */
+    void identity(Object item);
+
     /**根据设备信息决定是否开启门禁
      *
-     * @param
+     * @param item
      *
      */
      void entranceGuardByDevice(Object item);
+
+    /**门禁管理
+     *
+     * @@param item
+     *
+     */
+    void GuardManager(Object item);
+
+
 }

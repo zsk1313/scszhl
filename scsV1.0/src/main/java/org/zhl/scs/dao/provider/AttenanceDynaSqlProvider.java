@@ -25,9 +25,6 @@ public class AttenanceDynaSqlProvider {
 				if(entity.getNote() != null && !entity.getNote().equals("")){
 					VALUES("note", "#{note}");
 				}
-				if(entity.getClazz() != null){
-					VALUES("clazz_id", "#{clazz.id}");
-				}
 				if(entity.getCourse() != null){
 					VALUES("course_id", "#{course.id}");
 				}
@@ -50,9 +47,6 @@ public class AttenanceDynaSqlProvider {
 				}
 				if(entity.getNote() != null && !entity.getNote().equals("")){
 					SET(" note = #{note} ");
-				}
-				if(entity.getClazz() != null){
-					SET(" clazz_id = #{clazz.id} ");
 				}
 				if(entity.getCourse() != null){
 					SET(" course_id = #{course.id} ");
@@ -83,9 +77,6 @@ public class AttenanceDynaSqlProvider {
 					}
 					if(entity.getNote() != null && !entity.getNote().equals("")){
 						WHERE(" note LIKE CONCAT ('%',#{attenance.note},'%') ");
-					}
-					if(entity.getClazz() != null){
-						WHERE(" clazz_id = #{attenance.clazz.id} ");
 					}
 					if(entity.getCourse() != null){
 						WHERE(" course_id = #{attenance.course.id} ");
@@ -120,9 +111,6 @@ public class AttenanceDynaSqlProvider {
 					}
 					if(entity.getNote() != null && !entity.getNote().equals("")){
 						WHERE(" note LIKE CONCAT ('%',#{attenance.note},'%') ");
-					}
-					if(entity.getClazz() != null){
-						WHERE(" clazz_id = #{attenance.clazz.id} ");
 					}
 					if(entity.getCourse() != null){
 						WHERE(" course_id = #{attenance.course.id} ");

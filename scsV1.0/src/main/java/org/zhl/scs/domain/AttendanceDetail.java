@@ -42,8 +42,15 @@ public class AttendanceDetail implements Serializable {
 	public Attenance getAttenance() {
 		return attenance;
 	}
-	public void setSignTime(Date signtime){this.signTime=signtime;}
-	public Data getSignTime(){return (Data) signTime;}
+
+	public Date getSignTime() {
+		return signTime;
+	}
+
+	public void setSignTime(Date signTime) {
+		this.signTime = signTime;
+	}
+
 	@Override
 	public String toString() {
 		return
