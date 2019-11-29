@@ -105,6 +105,11 @@ public class IUserServiceImpl implements IUserService {
 //        }
         AssignByFieldName.getInstance().Assign(userVo,user);
         userDao.update(user);
+        if (userVo.getRoleIds()!=null && userVo.getRoleIds().size()>0){
+            System.out.println(userVo.getRoleIds()+"??");
+            updateUserRoles(userVo);
+            logger.debug("修改用户角色成功："+user.getUsername());
+        }
         logger.debug("修改用户成功："+user);
     }
 
@@ -342,10 +347,15 @@ public class IUserServiceImpl implements IUserService {
     }
 
     @Override
-    public void updateRole(RoleVo roleVo) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IllegalClassFormatException, EntityNotFoundException {
+    public void updateRole(RoleVo roleVo) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IllegalClassFormatException, EntityNotFoundException, IllegalValueException {
         Role role=daoUtil.checkEntityById(RoleDao.class,Role.class,roleVo.getId());
         AssignByFieldName.getInstance().Assign(roleVo,role);
         roleDao.update(role);
+        if (roleVo.getMenuIds()!=null && roleVo.getMenuIds().size()>0){
+            System.out.println(roleVo.getMenuIds()+"??");
+            updateRoleMenus(roleVo);
+            logger.debug("修改角色资源成功："+role.getName());
+        }
         logger.debug("修改角色成功");
 
     }
@@ -366,6 +376,16 @@ public class IUserServiceImpl implements IUserService {
     @Override
     public List<Role> selectRoles(RoleVo roleVo, PageModel pageModel) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException {
         return serviceUtil.ordinalSelectEntity(RoleDao.class,Role.class,roleVo,pageModel);
+    }
+
+    @Override
+    public void deleteRoles(List<Integer> idList) throws EntityNotFoundException, InvocationTargetException, IllegalClassFormatException, IllegalAccessException, IllegalValueException, NoSuchMethodException {
+        for (Integer id:
+                idList) {
+            RoleVo roleVo=new RoleVo();
+            roleVo.setId(id);
+            deleteRole(roleVo);
+        }
     }
 
     @Override
@@ -419,6 +439,16 @@ public class IUserServiceImpl implements IUserService {
         role.setMenus(menus);
         roleDao.insertMenus(role);
         return role;
+    }
+
+    @Override
+    public void deleteMenus(List<Integer> idList) throws NoSuchMethodException, EntityNotFoundException, IllegalAccessException, IllegalClassFormatException, InvocationTargetException {
+        for (Integer id:
+                idList) {
+            MenuVo menuVo=new MenuVo();
+            menuVo.setId(id);
+            deleteMenu(menuVo);
+        }
     }
 
     @Override

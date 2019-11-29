@@ -190,7 +190,7 @@ public interface IUserService  extends UserDetailsService {
      * 修改角色
      * @param roleVo
      */
-    void updateRole(RoleVo roleVo) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IllegalClassFormatException, EntityNotFoundException;
+    void updateRole(RoleVo roleVo) throws InvocationTargetException, NoSuchMethodException, IllegalAccessException, IllegalClassFormatException, EntityNotFoundException, IllegalValueException;
 
     /**
      * 删除角色
@@ -212,6 +212,12 @@ public interface IUserService  extends UserDetailsService {
      * @return
      */
     List<Role> selectRoles(RoleVo roleVo,PageModel pageModel) throws InvocationTargetException, NoSuchMethodException, InstantiationException, IllegalAccessException;
+
+    /**
+     * 批量删除角色
+     * @param idList
+     */
+    void deleteRoles(List<Integer> idList) throws EntityNotFoundException, InvocationTargetException, IllegalClassFormatException, IllegalAccessException, IllegalValueException, NoSuchMethodException;
 
     /**
      * 添加角色
@@ -252,4 +258,10 @@ public interface IUserService  extends UserDetailsService {
      * @return 修改后的角色信息
      */
     Role updateRoleMenus(RoleVo roleVo) throws IllegalValueException, InvocationTargetException, NoSuchMethodException, IllegalAccessException, IllegalClassFormatException, EntityNotFoundException;
+
+    /**
+     * 批量删除资源
+     * @param idList
+     */
+    void deleteMenus(List<Integer> idList) throws NoSuchMethodException, EntityNotFoundException, IllegalAccessException, IllegalClassFormatException, InvocationTargetException;
 }

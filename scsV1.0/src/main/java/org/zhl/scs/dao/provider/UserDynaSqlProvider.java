@@ -61,6 +61,12 @@ public class UserDynaSqlProvider {
 					if(entity.getPassword() != null && !entity.getPassword().equals("")){
 						WHERE(" password LIKE CONCAT ('%',#{user.password},'%') ");
 					}
+					if(entity.getLocked()!=null){
+						WHERE(" locked = #{user.locked} ");
+					}
+					if (entity.getEnable()!=null) {
+						WHERE(" enable = #{user.enable} ");
+					}
 				}
 			}
 		}.toString();

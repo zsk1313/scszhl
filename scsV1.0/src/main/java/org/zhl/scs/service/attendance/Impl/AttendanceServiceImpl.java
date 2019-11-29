@@ -6,14 +6,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.zhl.scs.dao.AttenanceDao;
 import org.zhl.scs.dao.AttendanceDetailDao;
+import org.zhl.scs.dao.ClazzDao;
+import org.zhl.scs.dao.CourseDao;
 import org.zhl.scs.domain.*;
 import org.zhl.scs.domain.vo.AttenanceVo;
 import org.zhl.scs.domain.vo.AttendanceDetailVo;
 import org.zhl.scs.domain.vo.CourseVo;
 import org.zhl.scs.service.attendance.IAttendanceService;
+import org.zhl.scs.util.AssignByFieldName;
 import org.zhl.scs.util.PageModel;
 
 import javax.swing.plaf.synth.SynthOptionPaneUI;
+import java.lang.reflect.InvocationTargetException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -37,10 +41,12 @@ public class AttendanceServiceImpl implements IAttendanceService {
     private AttenanceDao attenanceDao;
     @Autowired
     private AttendanceDetailDao attendanceDetailDao;
+
     @Autowired
-    Attenance attenance = new Attenance();
+    private CourseDao courseDao;
+
     @Autowired
-    AttendanceDetail attendanceDetail = new AttendanceDetail();
+    private ClazzDao clazzDao;
 
     @Override
     //@Transactional(rollbackFor = Exception.class)
@@ -49,12 +55,14 @@ public class AttendanceServiceImpl implements IAttendanceService {
      * @param attenanceVo
      *
      */
-    public void saveAttendance(AttenanceVo attenanceVo) {
+    public void saveAttendance(AttenanceVo attenanceVo) throws InvocationTargetException, IllegalAccessException {
         //获取vo里面的数据并转化为save方法所使用的实体
+        Attenance attenance= new Attenance();
+        AssignByFieldName.getInstance().Assign(attenanceVo,attenance);
 
-        Attenance course = attenanceDao.selectById(attenanceVo.getCourseId());
+        Course course = courseDao.selectById(attenanceVo.getCourseId());
         attenance.setCourse(course);
-        Attenance clazz = attenanceDao.selectById(attenanceVo.getClazzId());
+        Clazz clazz = clazzDao.selectById(attenanceVo.getClazzId());
         attenance.setClazz(clazz);
         attenance.setId(attenanceVo.getId());
         attenance.setDate(attenanceVo.getDate());
@@ -73,10 +81,10 @@ public class AttendanceServiceImpl implements IAttendanceService {
      */
     public void updateAttendance(AttenanceVo attenanceVo) {
         //获取vo里面的数据并转化为save方法所使用的实体
-        Attenance course = attenanceDao.selectById(attenanceVo.getCourseId());
+        Attenance attenance=attenanceDao.selectById(attenanceVo.getId());
+        Course course = courseDao.selectById(attenanceVo.getCourseId());
         attenance.setCourse(course);
-        Attenance clazz = attenanceDao.selectById(attenanceVo.getClazzId());
-        attenance.setClazz(clazz);
+        Clazz clazz = clazzDao.selectById(attenanceVo.getClazzId());
 
         attenance.setId(attenanceVo.getId());
         attenance.setDate(attenanceVo.getDate());
@@ -95,8 +103,7 @@ public class AttendanceServiceImpl implements IAttendanceService {
      *
      */
     public void deleteAttendance(AttenanceVo attenanceVo) {
-        attenance.setId(attenanceVo.getId());
-        attenanceDao.deleteById(attenance.getId());
+        attenanceDao.deleteById(attenanceVo.getId());
         System.out.println("删除完成");
 
     }
@@ -174,43 +181,43 @@ public class AttendanceServiceImpl implements IAttendanceService {
     public Attenance publishAttendances(CourseVo courseVo) {
         AttenanceVo attenanceVo = new AttenanceVo();
 
-        //获取课程ID和班级ID
-        Attenance clazz = attenanceDao.selectById(attenanceVo.getClazzId());
-        attenance.setClazz(clazz);
-
-        Attenance course = attenanceDao.selectById(courseVo.getId());
-        attenance.setCourse(course);
-        //应到人数,查询学生选课表
-        //遍历  学生课程表 ，把和选该门课程的学生数量统计出来
-
-
-        List<Integer> students = courseVo.getStudentIds();
-        int totalnum = students.size();
-        attenance.setTotal(totalnum);
-
-        //实到人数
-
-        List<Integer> acstudents = attenanceVo.getAttendanceDetailIds();
-        int actualnum = acstudents.size();
-        attenance.setActual(actualnum);
-
-        //发布时间
-        Date df = new Date("yyyy-MM-dd HH:mm:ss");
-        attenance.setDate(df);
-
-        //考勤时间,只有在考勤时间内打卡才能算是有效考勤
-      //Date Starttime = courseVo.getStart_time();
-      //long attime = 15*60*1000;
-      //Date Endtime = new Date(Starttime.getTime()+attime);
-
-
-        //考勤表发放到的教室
-        //根据courseVo中的classroom属性寻找到对应的教室
-        //在对应教室的考勤设备中发布考勤消息
-
-
-
-        attenanceDao.save(attenance);
+//        //获取课程ID和班级ID
+//        Clazz clazz = clazzDao.selectById(courseVo.)
+//        attenance.setClazz(clazz);
+//
+//        Attenance course = attenanceDao.selectById(courseVo.getId());
+//        attenance.setCourse(course);
+//        //应到人数,查询学生选课表
+//        //遍历  学生课程表 ，把和选该门课程的学生数量统计出来
+//
+//
+//        List<Integer> students = courseVo.getStudentIds();
+//        int totalnum = students.size();
+//        attenance.setTotal(totalnum);
+//
+//        //实到人数
+//
+//        List<Integer> acstudents = attenanceVo.getAttendanceDetailIds();
+//        int actualnum = acstudents.size();
+//        attenance.setActual(actualnum);
+//
+//        //发布时间
+//        Date df = new Date("yyyy-MM-dd HH:mm:ss");
+//        attenance.setDate(df);
+//
+//        //考勤时间,只有在考勤时间内打卡才能算是有效考勤
+//      //Date Starttime = courseVo.getStart_time();
+//      //long attime = 15*60*1000;
+//      //Date Endtime = new Date(Starttime.getTime()+attime);
+//
+//
+//        //考勤表发放到的教室
+//        //根据courseVo中的classroom属性寻找到对应的教室
+//        //在对应教室的考勤设备中发布考勤消息
+//
+//
+//
+//        attenanceDao.save(attenance);
         return null;
     }
 
@@ -250,18 +257,18 @@ public class AttendanceServiceImpl implements IAttendanceService {
         //当传感器信息传输到这里，自动记录时间，
         //如果不在考勤时间内，返回消息"超过时间，考勤失败"
         //否则返回“考勤成功”
-        Date sitime = attendanceDetailVo.getSigntime();
-        Date attime = attenance.getDate();
-
-
-        if(sitime.getTime()<attime.getTime()) {
-            AttendanceDetail attendanceDetail = attendanceDetailDao.selectById(attendanceDetailVo.getAttenanceId());
-            attendanceDetail.setAttenance(attendanceDetail);
-            attendanceDetailDao.save(attendanceDetail);
-            System.out.println("考勤成功");
-        }else {
-            System.out.println("考勤失败");
-        }
+//        Date sitime = attendanceDetailVo.getSigntime();
+//        Date attime = attenance.getDate();
+//
+//
+//        if(sitime.getTime()<attime.getTime()) {
+//            AttendanceDetail attendanceDetail = attendanceDetailDao.selectById(attendanceDetailVo.getAttenanceId());
+//            attendanceDetail.setAttenance(attendanceDetail);
+//            attendanceDetailDao.save(attendanceDetail);
+//            System.out.println("考勤成功");
+//        }else {
+//            System.out.println("考勤失败");
+//        }
 
     }
 
@@ -272,13 +279,13 @@ public class AttendanceServiceImpl implements IAttendanceService {
      * @param attenanceVo
      */
     public void note(AttenanceVo attenanceVo) {
-        //根据课程号寻找需要写入的考勤表
-        attenance.setId(attenanceVo.getId());
-
-        //写入备注信息
-        String message = attenanceVo.getNote();
-        attenance.setNote(message);
-        attenanceDao.save(attenance);
+//        //根据课程号寻找需要写入的考勤表
+//        attenance.setId(attenanceVo.getId());
+//
+//        //写入备注信息
+//        String message = attenanceVo.getNote();
+//        attenance.setNote(message);
+//        attenanceDao.save(attenance);
     }
 
     @Override

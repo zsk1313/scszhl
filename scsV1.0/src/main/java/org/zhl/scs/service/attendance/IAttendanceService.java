@@ -6,6 +6,7 @@ import org.zhl.scs.domain.vo.AttendanceDetailVo;
 import org.zhl.scs.domain.vo.CourseVo;
 import org.zhl.scs.util.PageModel;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 /**
@@ -22,7 +23,7 @@ public interface IAttendanceService {
      *
      * @param attenanceVo 考勤表
      */
-    void saveAttendance(AttenanceVo attenanceVo);
+    void saveAttendance(AttenanceVo attenanceVo) throws InvocationTargetException, IllegalAccessException;
 
     /**
      * 修改考勤表
